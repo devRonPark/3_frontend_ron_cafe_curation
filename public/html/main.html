@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/0e5a8c1c44.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>홈 | JJINCAFE IN SEOUL</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/main.page.css" />
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header id="header">
+      <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+      <a href="javascript:void(0)" class="header__navBtn">
+        <i class="navBtn__icon fa fa-bars"></i>
+      </a>
+      <a href="/main" class="header__logo">JJINCAFE IN SEOUL</a>
+      <div id="modal__overlay"></div>
+      <!-- Navigation links (hidden by default) -->
+      <!-- Hamburger 메뉴 클릭 시 활성화됨. -->
+      <div class="modal">
+        <header class="modal__header">
+          <a href="javascript:void(0)" class="modal__header-logo"
+            >JJINCAFE IN SEOUL</a
+          >
+          <a href="javascript:void(0)" class="modal__header-close">
+            <i class="fa fa-close"></i>
+          </a>
+        </header>
+        <div class="loginBtn_wrap">
+          <a href="/login">로그인</a>
+        </div>
+        <div class="modal__content">
+          <a href="/main">메인</a>
+          <a href="/top-lists">평점 높은 카페 리스트</a>
+          <a href="/login">로그인</a>
+          <a href="/service#contact">문의하기</a>
+        </div>
+      </div>
+
+      <a href="javascript:void(0)" class="header__searchBtn">
+        <i class="searchBtn__icon fas fa-search"></i>
+      </a>
+    </header>
+    <!-- 메인 -->
+    <main id="content">
+      <article>
+        <!-- 배경은 css :before 이용하여 추가 -->
+        <header class="main-header">
+          <p class="title">서울 시내 나만의 카페를 찾아라!</p>
+          <h1 class="title">JJINCAFE IN SEOUL</h1>
+          <!-- 검색 창 -->
+          <form action="/search" method="get">
+            <fieldset class="main-search">
+              <legend>전체 검색</legend>
+              <label for="main-search" class="search-word">
+                <!-- CSS ::before 혹은 ::after로 icon 삽입 -->
+                <span class="search_icon">
+                  <i class="fas fa-search"></i>
+                </span>
+                <input
+                  id="main-search"
+                  class="homeSearchInput"
+                  name="main-search"
+                  type="search"
+                  maxlength="50"
+                  placeholder="카페 이름"
+                  autocomplete="off"
+                />
+                <span class="clear_btn">CLEAR</span>
+              </label>
+              <input class="btn-search" type="submit" value="검색" />
+            </fieldset>
+          </form>
+        </header>
+        <section class="popular_top_list_wrap">
+          <div class="title_wrap">
+            <h2 class="title">평점 높은 카페 리스트</h2>
+            <a href="/top-lists">리스트 더보기</a>
+          </div>
+          <!-- 이미지 슬라이더 -->
+          <div class="toplist-slider">
+            <!-- 카페 정보 슬라이드 -->
+            <div class="top_list_slide">
+              <ul class="main_popular_cafe_list">
+                <li class="cafe-item">
+                  <div class="popular_cafe_inner_wrap">
+                    <a href="javascript:void(0)">
+                      <figure class="cafe-item">
+                        <div class="thumb">
+                          <img
+                            src="../images/cafe_thumbnail_mobile.jpg"
+                            alt="[카페 이름] 사진 - [도로명 주소]"
+                          />
+                        </div>
+                        <figcaption>
+                          <div class="info">
+                            <span class="title">카페퍼블리코 본점</span>
+                            <span class="address">동작구 대방동 395-18</span>
+                            <strong class="point">4.4</strong>
+                          </div>
+                        </figcaption>
+                      </figure>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <ul class="slide-dots">
+              <li class="active"><button type="button">1</button></li>
+              <li><button type="button">2</button></li>
+              <li><button type="button">3</button></li>
+              <li><button type="button">4</button></li>
+              <li><button type="button">5</button></li>
+            </ul>
+          </div>
+        </section>
+      </article>
+    </main>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

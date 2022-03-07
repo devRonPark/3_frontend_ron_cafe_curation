@@ -1,0 +1,90 @@
+/* reset.css */
+body {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+p {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+main {
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a img {
+  border: none;
+}
+img {
+  vertical-align: middle;
+}
+li {
+  list-style: none;
+}
+address,
+em,
+i,
+cite {
+  font-style: normal;
+}
+table {
+  border-collapse: collapse;
+}
+table caption {
+  overflow: hidden;
+  width: 0;
+  height: 0;
+}
+i.fas,
+i.far,
+i.fab {
+  vertical-align: middle;
+  display: inline-block;
+}
+i.fas span,
+i.far span,
+i.fab span {
+  position: absolute;
+  overflow: hidden;
+  text-indent: -999px;
+}
+figure {
+  margin: 0;
+}
+button {
+  border: none;
+  outline: 0;
+  padding: 0;
+}
+
+.clearfix::after,
+.clearfix::before {
+  content: '';
+  display: block;
+  clear: both;
+}
+.mobile {
+  display: none !important;
+}
