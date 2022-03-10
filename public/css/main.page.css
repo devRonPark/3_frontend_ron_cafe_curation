@@ -1,3 +1,7 @@
+:root {
+  --shadow: rgba(0, 0, 0, 0.8);
+}
+
 body {
   width: 100vw;
   /* 스크롤바 가리기 */
@@ -114,27 +118,31 @@ body {
   text-decoration: underline;
   color: #cbcbcb;
 }
-.popular_top_list_wrap .top_list_slide {
-  width: 100%;
-}
-.popular_top_list_wrap .main_popular_cafe_list {
-  display: flex;
-  flex-direction: row;
-  width: calc(100% - 60px);
-  max-width: 400px;
-  height: 300px;
-  margin: 0 auto;
-}
 .popular_top_list_wrap .toplist-slider {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
 }
+.popular_top_list_wrap .top_list_slide {
+  max-width: 350px;
+  height: 300px;
+  overflow: scroll;
+}
+.popular_top_list_wrap .main_popular_cafe_list {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5rem;
+  cursor: grab;
+}
 .main_popular_cafe_list .cafe-item {
-  width: 100%;
+  width: calc(100% - 30px);
+  min-width: 350px;
+  height: 300px;
+  max-height: 300px;
   position: relative;
   overflow: hidden;
+  box-shadow: 5px 5px 50px -1px var(--shadow);
 }
 .main_popular_cafe_list .cafe-item .info {
   display: flex;
@@ -148,7 +156,7 @@ body {
 }
 .main_popular_cafe_list .cafe-item .thumb img {
   filter: brightness(50%);
-  height: 300px;
+  max-height: 100%;
 }
 .cafe-item .info .title {
   font-size: 20px;
