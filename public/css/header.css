@@ -1,0 +1,90 @@
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  font-size: 16px;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+#header > .header__logo {
+  color: #d35400;
+  font-weight: bold;
+}
+#modal__overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  z-index: 100;
+}
+#modal__overlay.open {
+  display: block;
+}
+#header > .modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -384px;
+  width: 384px;
+  max-width: calc(100vw - 64px);
+  padding: 8px 16px 24px;
+  background: red;
+  z-index: 1000;
+  transition: left 0.5s ease-in-out;
+}
+.modal > .modal__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 20px 20px 0;
+}
+.modal > .modal__header .modal__header-logo {
+  cursor: auto;
+}
+.modal > .loginBtn_wrap {
+  margin: 20px 0;
+}
+.modal > .loginBtn_wrap a {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 20px;
+  background: black;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+}
+#header > .modal .modal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 20px;
+}
+#header > .modal .modal__content > a {
+  display: block;
+  padding: 20px 0 20px 40px;
+}
+
+#header > .modal.open {
+  left: 0;
+  transition: left 0.5s ease-in-out;
+}
+
+#header > .header__navBtn {
+  margin-left: 15px;
+  color: #000;
+}
+#header > .header__searchBtn {
+  margin-right: 15px;
+  color: #000;
+}

@@ -1,0 +1,106 @@
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#login-form {
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 3rem;
+  margin-top: 3.5rem;
+  border: 1px solid #c6c6c6;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgb(68 68 68);
+}
+#login-form > .welcome {
+  margin-bottom: 1.4rem;
+}
+#login-form > .form-control:nth-child(2) {
+  margin-bottom: 1.2rem;
+}
+#login-form > .form-control:nth-child(3) {
+  margin-bottom: 0.4rem;
+}
+.form-control > label {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+}
+.form-control > .input-wrap {
+  position: relative;
+}
+.input-wrap > .login-input {
+  padding: 1rem 0.4rem;
+  width: 100%;
+  border: 1px solid #dadada;
+}
+.input-wrap > .login-input.active {
+  border: 1px solid #03c75a;
+}
+
+.input-wrap > .icon-wrap {
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-56%);
+  color: #888;
+  font-size: 0.7rem;
+}
+.input-wrap > .icon-wrap.pwd-reveal {
+  cursor: pointer;
+}
+#login-form > .loginBtn {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  padding: 13px 0 13px;
+  border-radius: 28px;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #db7632;
+  transition: background-color 0.3s ease;
+}
+#login-form > .loginBtn:hover {
+  background-color: #d35400;
+}
+
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  font-size: 0.9rem;
+  margin: 0.3rem 0 2rem 0;
+}
+
+/* 버튼 목록 */
+.btn-list {
+  width: 100%;
+  text-align: center;
+  margin-top: 1.6rem;
+  font-size: 1.2rem;
+}
+.btn-list > .btn {
+  display: inline-block;
+  position: relative;
+  color: #888;
+}
+.btn-list > .btn + .btn {
+  padding-left: 1rem;
+}
+.btn-list > .btn + .btn::before {
+  content: '';
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.4rem;
+  width: 0.0625rem;
+  height: 1.2rem;
+  border-radius: 0.03125rem;
+  background-color: #dadada;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/0e5a8c1c44.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 | JJINCAFE IN SEOUL</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/login.page.css" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../images/favicon.ico"
+    />
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header id="header">
+      <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+      <a href="javascript:void(0)" class="header__navBtn">
+        <i class="navBtn__icon fa fa-bars"></i>
+      </a>
+      <a href="/main" class="header__logo">JJINCAFE IN SEOUL</a>
+      <div id="modal__overlay"></div>
+      <!-- Navigation links (hidden by default) -->
+      <!-- Hamburger 메뉴 클릭 시 활성화됨. -->
+      <div class="modal">
+        <header class="modal__header">
+          <a href="javascript:void(0)" class="modal__header-logo"
+            >JJINCAFE IN SEOUL</a
+          >
+          <a href="javascript:void(0)" class="modal__header-close">
+            <i class="fa fa-close"></i>
+          </a>
+        </header>
+        <div class="loginBtn_wrap">
+          <a href="/login">로그인</a>
+        </div>
+        <div class="modal__content">
+          <a href="/main">메인</a>
+          <a href="/top-lists">평점 높은 카페 리스트</a>
+          <a href="/service#contact">문의하기</a>
+        </div>
+      </div>
+
+      <a href="javascript:void(0)" class="header__searchBtn">
+        <i class="searchBtn__icon fas fa-search"></i>
+      </a>
+    </header>
+    <!-- 메인 -->
+    <main id="content">
+      <form
+        id="login-form"
+        action="https://api.jjincafe-in-seoul.com/users"
+        method="post"
+      >
+        <h1 class="welcome">어서 오세요</h1>
+        <div class="form-control">
+          <label for="email-address">이메일 주소</label>
+          <div class="input-wrap">
+            <input
+              id="email-address"
+              class="login-input"
+              autocomplete="off"
+              name="email"
+              placeholder="이메일"
+              required="required"
+              type="email"
+            />
+            <span class="icon-wrap">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label for="password">비밀번호</label>
+          <div class="input-wrap">
+            <input
+              id="password"
+              class="login-input"
+              name="password"
+              required="required"
+              type="password"
+              placeholder="비밀번호"
+            />
+            <span class="icon-wrap pwd-reveal">
+              <i class="fas fa-eye"></i>
+            </span>
+          </div>
+        </div>
+        <div class="checkbox-wrap">
+          <input id="remember-me" type="checkbox" />
+          <label for="remember-me">아이디 기억하기</label>
+        </div>
+        <button type="submit" class="loginBtn">로그인</button>
+      </form>
+      <ul class="btn-list">
+        <li class="btn"><a href="/find-password">비밀번호 찾기</a></li>
+        <li class="btn"><a href="/find-email">아이디 찾기</a></li>
+        <li class="btn"><a href="/register">회원가입</a></li>
+      </ul>
+    </main>
+    <script src="../js/header.js"></script>
+    <script src="../js/login.js"></script>
+  </body>
+</html>

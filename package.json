@@ -1,0 +1,35 @@
+{
+  "name": "3_frontend_ron_cafe_curation",
+  "version": "1.0.0",
+  "description": "3기 풀스택반 ron 나만 아는 카페 공유 서비스",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e html, css, js --watch public/ index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byungchanparkme/3_frontend_ron_cafe_curation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byungchanparkme/3_frontend_ron_cafe_curation/issues"
+  },
+  "homepage": "https://github.com/byungchanparkme/3_frontend_ron_cafe_curation#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1"
+  },
+  "proxy": "http://localhost:3000"
+}
