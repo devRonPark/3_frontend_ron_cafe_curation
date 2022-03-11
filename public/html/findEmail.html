@@ -59,8 +59,9 @@
         method="post"
       >
         <h1 class="title">아이디 찾기</h1>
-        <div class="form-control">
-          <div class="input-wrap">
+        <div class="form-group">
+          <div class="form-control">
+            <label for="nickname">닉네임</label>
             <input
               id="nickname"
               autocomplete="off"
@@ -69,10 +70,9 @@
               required="required"
               type="text"
             />
-            <label for="nickname">닉네임</label>
           </div>
         </div>
-        <button type="submit" class="findEmailBtn">확인</button>
+        <input type="submit" class="findEmailBtn" value="찾기" />
       </form>
     </main>
     <script src="../js/header.js"></script>
