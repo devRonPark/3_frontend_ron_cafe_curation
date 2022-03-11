@@ -16,6 +16,8 @@ input:focus {
 #content {
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding-top: 120px;
 }
 #content > article {
   width: 1200px;
