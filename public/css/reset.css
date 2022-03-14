@@ -74,6 +74,7 @@ figure {
   margin: 0;
 }
 button {
+  background: none;
   border: none;
   outline: 0;
   padding: 0;
