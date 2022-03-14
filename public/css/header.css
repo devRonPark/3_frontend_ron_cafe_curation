@@ -21,6 +21,9 @@
   height: 2rem;
   font-size: 1.125rem;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-btn__icon,
@@ -264,7 +267,7 @@
 }
 .selectBox #guList,
 .selectBox #dongList {
-  height: 9.375rem; /* 3개 옵션을 기본으로 보여줌. */
+  height: 10.125rem; /* 3개 옵션을 기본으로 보여줌. */
   overflow-y: scroll;
 }
 .option {
