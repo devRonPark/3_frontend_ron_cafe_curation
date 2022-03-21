@@ -8,9 +8,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>회원가입 | JJINCAFE IN SEOUL</title>
+    <title>아이디 찾기 결과 | JJINCAFE IN SEOUL</title>
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/register.page.css" />
+    <link rel="stylesheet" href="../css/findResult.page.css" />
     <link
       rel="shortcut icon"
       type="image/x-icon"
@@ -195,136 +195,63 @@
     </header>
     <!-- 메인 -->
     <main id="content">
-      <form
-        id="register-form"
-        action="https://api.jjincafe-in-seoul.com/auth/local/new-user"
-        method="post"
-        enctype="multipart/form-data"
-      >
-        <h1 class="title">회원가입</h1>
-        <div class="form-control">
-          <label for="input-image">프로필</label>
-          <div class="image-wrap">
-            <img
-              id="preview-image"
-              src="../images/profile_default.png"
-              alt="회원가입 사용자 프로필 미리보기"
-            />
-            <input
-              type="file"
-              id="input-image"
-              name="image"
-              accept=".jpg, .png, .gif"
-            />
+      <section class="result">
+        <h1 class="result__title">아이디 찾기 결과</h1>
+        <form
+          class="result-form"
+          action="https://api.jjincafe-in-seoul.com/users"
+          method="post"
+        >
+          <!-- 사용자가 존재하는 경우 -->
+          <div
+            class="result-form__content result-form__content--user-yes hidden"
+          >
+            <div class="result-form__content-wrap">
+              <div class="result-content__row">
+                <span class="result-content__name">닉네임</span>
+                <span class="result-content__value">홍길동</span>
+              </div>
+              <div class="result-content__row">
+                <span class="result-content__name">아이디</span>
+                <div>
+                  <span class="result-content__value"
+                    >hon*******@gmail.com</span
+                  >
+                  <input
+                    class="form-result__button"
+                    type="submit"
+                    value="아이디 받기"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="result-content__description">
+              <p class="result-content__description-content">
+                개인 정보 보호를 위해 앞 두 글자만 보여드립니다. 전체 아이디는
+                등록된 메일 주소로 안내해드렸습니다.
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="form-control">
-          <label for="nickname">닉네임</label>
-          <div class="input-wrap nickname-wrap">
-            <input
-              id="nickname"
-              autocomplete="off"
-              name="name"
-              placeholder="닉네임"
-              required="required"
-              type="text"
-            />
-            <button class="nickname-check" type="button">중복 확인</button>
+          <!-- 사용자가 존재하지 않는 경우 -->
+          <div class="result-form__content result-form__content--user-no">
+            <span class="result-content__message"
+              >입력하신 정보로 아이디를 찾을 수가 없습니다.</span
+            >
           </div>
-        </div>
-        <div class="form-control">
-          <label for="email-address">이메일</label>
-          <div class="input-wrap emailInput-wrap">
-            <input
-              id="email-address"
-              class="login-input"
-              autocomplete="off"
-              name="email"
-              placeholder="이메일"
-              required="required"
-              type="email"
-            />
-            <span class="icon-wrap emailIcon-wrap">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <button class="email-check" type="button">중복 확인</button>
-          </div>
-          <!-- <table>
-            <tr>
-              <th scope="row">이메일</th>
-              <td>
-                <input
-                  type="text"
-                  id="email_id"
-                  value=""
-                  title="이메일 아이디"
-                  placeholder="이메일"
-                  maxlength="18"
-                />
-                @
-                <input
-                  type="text"
-                  id="email_domain"
-                  value=""
-                  title="이메일 도메인"
-                  placeholder="이메일 도메인"
-                  maxlength="18"
-                />
-                <select class="select" title="이메일 도메인 주소 선택">
-                  <option value="">직접 입력</option>
-                  <option value="naver.com">naver.com</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="hanmail.net">hanmail.net</option>
-                  <option value="hotmail.com">hotmail.com</option>
-                  <option value="korea.com">korea.com</option>
-                  <option value="nate.com">nate.com</option>
-                  <option value="yahoo.com">yahoo.com</option>
-                </select>
-              </td>
-            </tr>
-          </table> -->
-        </div>
-        <div class="form-control">
-          <p>인증상태</p>
-          <div class="verify-wrap">
-            <span class="verify-status">미인증</span>
-            <button type="button" class="emailVerifyBtn">인증</button>
-          </div>
-        </div>
-        <div class="form-control">
-          <label for="password">비밀번호</label>
-          <div class="input-wrap">
-            <input
-              id="password"
-              name="password"
-              required="required"
-              type="password"
-              placeholder="영문, 숫자 포함 8자 이상"
-            />
-            <span class="icon-wrap pwd-reveal">
-              <i class="fas fa-eye"></i>
-            </span>
-          </div>
-        </div>
-        <div class="form-control">
-          <label for="password-confirmation">비밀번호 확인</label>
-          <div class="input-wrap">
-            <input
-              id="password-confirmation"
-              name="passwordConfirmation"
-              required="required"
-              type="password"
-              placeholder="비밀번호 확인"
-            />
-            <span class="icon-wrap pwd-reveal">
-              <i class="fas fa-eye"></i>
-            </span>
-          </div>
-        </div>
-        <button type="submit" class="registerBtn">가입하기</button>
-      </form>
+        </form>
+        <ul class="btn-list">
+          <li class="btn-list__item btn-list__item--user-yes">
+            <a href="/account/login">로그인</a>
+          </li>
+          <li class="btn-list__item btn-list__item--user-yes">
+            <a href="/account/find-password">비밀번호 찾기</a>
+          </li>
+          <li class="btn-list__item">
+            <a href="/account/find-email">돌아가기</a>
+          </li>
+        </ul>
+      </section>
     </main>
     <script src="../js/header.js"></script>
-    <script src="../js/register.js"></script>
   </body>
 </html>

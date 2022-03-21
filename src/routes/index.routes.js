@@ -5,16 +5,16 @@ const indexRouter = express.Router();
 indexRouter.get('/main', (req, res) => {
   return res.sendFile(path.resolve('public/html/main.html'));
 });
-indexRouter.get('/login', (req, res) => {
+indexRouter.get('/account/login', (req, res) => {
   return res.sendFile(path.resolve('public/html/login.html'));
 });
-indexRouter.get('/register', (req, res) => {
+indexRouter.get('/account/register', (req, res) => {
   return res.sendFile(path.resolve('public/html/register.html'));
 });
-indexRouter.get('/find-email', (req, res) => {
+indexRouter.get('/account/find-email', (req, res) => {
   return res.sendFile(path.resolve('public/html/findEmail.html'));
 });
-indexRouter.get('/find-password', (req, res) => {
+indexRouter.get('/account/find-password', (req, res) => {
   return res.sendFile(path.resolve('public/html/findPassword.html'));
 });
 
