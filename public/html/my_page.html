@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="kor">
   <head>
+    <script
+      src="https://kit.fontawesome.com/0e5a8c1c44.js"
+      crossorigin="anonymous"
+    ></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>아이디 찾기 결과 | JJINCAFE IN SEOUL</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <title>회원가입 | JJINCAFE IN SEOUL</title>
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/findResult.page.css" />
+    <link rel="stylesheet" href="../css/register.page.css" />
     <link
       rel="shortcut icon"
       type="image/x-icon"
@@ -26,7 +23,7 @@
       <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
       <div class="header__nav">
         <button type="button" class="header__nav-btn">
-          <i class="nav-btn__icon fas fa-bars"></i>
+          <i class="nav-btn__icon fa fa-bars"></i>
           <span class="screen-reader-text">네비게이션 메뉴 열기 버튼</span>
         </button>
         <div class="nav-modal__overlay"></div>
@@ -38,7 +35,7 @@
           </div>
           <div class="close-area">
             <a href="javascript:void(0)" class="close-area__close-btn">
-              <i class="far fa-times-circle"></i>
+              <i class="fa fa-close"></i>
               <span class="screen-reader-text">닫기</span>
             </a>
           </div>
@@ -67,6 +64,7 @@
           </a>
         </div>
       </div>
+
       <div class="header__search">
         <button type="button" class="header__search-btn">
           <i class="search-btn__icon fas fa-search"></i>
@@ -78,7 +76,7 @@
           </div>
           <div class="search-modal__header">
             <button type="button" class="close-btn">
-              <i class="fas fa-long-arrow-alt-left"></i>
+              <i class="fa fa-arrow-left"></i>
               <span class="screen-reader-text">닫기</span>
             </button>
             <form action="/search" method="get" class="search-form">
@@ -88,12 +86,12 @@
                   type="button"
                   class="search-form__btn search-form__filter-btn"
                 >
-                  <i class="filter-btn__icon fas fa-sliders-h"></i>
+                  <i class="filter-btn__icon fa fa-sliders"></i>
                   <span class="screen-reader-text">검색 필터 열기 버튼</span>
                 </button>
                 <div class="search-filter-modal">
                   <button type="button" class="search-filter-modal__close-btn">
-                    <i class="far fa-times-circle"></i>
+                    <i class="fa fa-close"></i>
                     <span class="screen-reader-text">닫기</span>
                   </button>
                   <div class="search-filter__option">
@@ -164,7 +162,7 @@
                   type="submit"
                   class="search-form__btn search-form__search-btn"
                 >
-                  <i class="fas fa-search"></i>
+                  <i class="fa fa-search"></i>
                   <span class="hidden">Search</span>
                 </button>
               </label>
@@ -197,63 +195,14 @@
     </header>
     <!-- 메인 -->
     <main id="content">
-      <section class="result">
-        <h1 class="result__title">아이디 찾기 결과</h1>
-        <form
-          class="result-form"
-          action="https://api.jjincafe-in-seoul.com/users"
-          method="post"
-        >
-          <!-- 사용자가 존재하는 경우 -->
-          <div
-            class="result-form__content result-form__content--user-yes hidden"
-          >
-            <div class="result-form__content-wrap">
-              <div class="result-content__row">
-                <span class="result-content__name">닉네임</span>
-                <span class="result-content__value">홍길동</span>
-              </div>
-              <div class="result-content__row">
-                <span class="result-content__name">아이디</span>
-                <div>
-                  <span class="result-content__value"
-                    >hon*******@gmail.com</span
-                  >
-                  <input
-                    class="form-result__button"
-                    type="submit"
-                    value="아이디 받기"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="result-content__description">
-              <p class="result-content__description-content">
-                개인 정보 보호를 위해 앞 두 글자만 보여드립니다. 전체 아이디는
-                등록된 메일 주소로 안내해드렸습니다.
-              </p>
-            </div>
-          </div>
-          <!-- 사용자가 존재하지 않는 경우 -->
-          <div class="result-form__content result-form__content--user-no">
-            <span class="result-content__message"
-              >입력하신 정보로 아이디를 찾을 수가 없습니다.</span
-            >
-          </div>
-        </form>
-        <ul class="btn-list">
-          <li class="btn-list__item btn-list__item--user-yes">
-            <a href="/account/login">로그인</a>
-          </li>
-          <li class="btn-list__item btn-list__item--user-yes">
-            <a href="/account/find-password">비밀번호 찾기</a>
-          </li>
-          <li class="btn-list__item">
-            <a href="/account/find-email">돌아가기</a>
-          </li>
-        </ul>
-      </section>
+      <div class="tab-area">
+        <input type="radio" name="my_likes" id="my_likes" checked />
+        <label for="my_likes">관심목록</label>
+        <input type="radio" name="my_reviews" id="my_reviews" />
+        <label for="my_reviews">내가 쓴 리뷰</label>
+        <div id="my_likes-content" class="tab-content"></div>
+        <div id="my_reviews-content" class="tab-content"></div>
+      </div>
     </main>
-    <script src="../js/header.js"></script>
   </body>
 </html>
