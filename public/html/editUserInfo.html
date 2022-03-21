@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/0e5a8c1c44.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원정보 수정 | JJINCAFE IN SEOUL</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/editUserInfo.page.css" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../images/favicon.ico"
+    />
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header class="header">
+      <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+      <div class="header__nav">
+        <button type="button" class="header__nav-btn">
+          <i class="nav-btn__icon fa fa-bars"></i>
+          <span class="screen-reader-text">네비게이션 메뉴 열기 버튼</span>
+        </button>
+        <div class="nav-modal__overlay"></div>
+        <!-- Navigation links (hidden by default) -->
+        <!-- Hamburger 메뉴 클릭 시 활성화됨. -->
+        <div class="nav-modal">
+          <div class="title screen-reader-text">
+            <h2>네비게이션 메뉴 창</h2>
+          </div>
+          <div class="close-area">
+            <a href="javascript:void(0)" class="close-area__close-btn">
+              <i class="fa fa-close"></i>
+              <span class="screen-reader-text">닫기</span>
+            </a>
+          </div>
+          <div class="nav-modal__content">
+            <ul class="nav-menu__list">
+              <li class="nav-menu__item">
+                <a href="/account/login">로그인</a>
+              </li>
+              <li class="nav-menu__item">
+                <a href="/main">메인</a>
+              </li>
+              <li class="nav-menu__item">
+                <a href="/top-lists">평점 높은 카페 리스트</a>
+              </li>
+              <li class="nav-menu__item">
+                <a href="/service#contact">문의하기</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="header__logo">
+        <div class="logo">
+          <a href="/main" class="logo__link">
+            <h1>JJINCAFE IN SEOUL</h1>
+          </a>
+        </div>
+      </div>
+
+      <div class="header__search">
+        <button type="button" class="header__search-btn">
+          <i class="search-btn__icon fas fa-search"></i>
+          <span class="screen-reader-text">검색 버튼</span>
+        </button>
+        <div class="search-modal">
+          <div class="title screen-reader-text">
+            <h2>검색 창</h2>
+          </div>
+          <div class="search-modal__header">
+            <button type="button" class="close-btn">
+              <i class="fa fa-arrow-left"></i>
+              <span class="screen-reader-text">닫기</span>
+            </button>
+            <form action="/search" method="get" class="search-form">
+              <label>
+                <input type="search" class="search-form__input" />
+                <button
+                  type="button"
+                  class="search-form__btn search-form__filter-btn"
+                >
+                  <i class="filter-btn__icon fa fa-sliders"></i>
+                  <span class="screen-reader-text">검색 필터 열기 버튼</span>
+                </button>
+                <div class="search-filter-modal">
+                  <button type="button" class="search-filter-modal__close-btn">
+                    <i class="fa fa-close"></i>
+                    <span class="screen-reader-text">닫기</span>
+                  </button>
+                  <div class="search-filter__option">
+                    <label class="filterName" for="city">시</label>
+                    <div id="city" class="selectBox">
+                      <div id="citySelectField" class="selectField">
+                        <p id="citySelectText" class="selectText">
+                          시를 선택해주세요.
+                        </p>
+                        <img src="../images/arrow.png" class="arrowIcon" />
+                      </div>
+                      <ul id="cityList" class="list hide">
+                        <li class="option">서울특별시</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="search-filter__option">
+                    <label class="filterName" for="gu">구</label>
+                    <div id="gu" class="selectBox">
+                      <div id="guSelectField" class="selectField">
+                        <p id="guSelectText" class="selectText">
+                          구를 선택해주세요.
+                        </p>
+                        <img src="../images/arrow.png" class="arrowIcon" />
+                      </div>
+                      <ul id="guList" class="list hide">
+                        <li class="option">강남구</li>
+                        <li class="option">강동구</li>
+                        <li class="option">강북구</li>
+                        <li class="option">강서구</li>
+                        <li class="option">관악구</li>
+                        <li class="option">광진구</li>
+                        <li class="option">구로구</li>
+                        <li class="option">금천구</li>
+                        <li class="option">노원구</li>
+                        <li class="option">도봉구</li>
+                        <li class="option">동대문구</li>
+                        <li class="option">동작구</li>
+                        <li class="option">마포구</li>
+                        <li class="option">서대문구</li>
+                        <li class="option">서초구</li>
+                        <li class="option">성동구</li>
+                        <li class="option">성북구</li>
+                        <li class="option">양천구</li>
+                        <li class="option">영등포구</li>
+                        <li class="option">용산구</li>
+                        <li class="option">은평구</li>
+                        <li class="option">종로구</li>
+                        <li class="option">중구</li>
+                        <li class="option">중랑구</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="search-filter__option">
+                    <label class="filterName" for="dong">동</label>
+                    <div id="dong" class="selectBox">
+                      <div id="dongSelectField" class="selectField">
+                        <p id="dongSelectText" class="selectText">
+                          동을 선택해주세요.
+                        </p>
+                        <img src="../images/arrow.png" class="arrowIcon" />
+                      </div>
+                      <ul id="dongList" class="list hide"></ul>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="search-form__btn search-form__search-btn"
+                >
+                  <i class="fa fa-search"></i>
+                  <span class="hidden">Search</span>
+                </button>
+              </label>
+            </form>
+          </div>
+          <div class="search-modal__content">
+            <div class="recent-keyword">
+              <h3>최근 검색어</h3>
+              <ul class="recent-keyword__list">
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- 메인 -->
+    <main id="content">
+      <section class="editUserInfo">
+        <header class="title">회원정보 수정</header>
+        <div class="editUserInfo__profile">
+          <strong>프로필</strong>
+          <div class="info-wrap">
+            <img
+              id="preview-image"
+              src="../images/profile_default.png"
+              alt="사용자 프로필 미리보기"
+            />
+            <button class="profile-change" type="button">
+              <i class="fas fa-camera"></i>
+              <span class="screen-reader-text">프로필 변경 버튼</span>
+            </button>
+            <!-- 프로필 변경 모달 -->
+            <div class="profile-change-modal hidden">
+              <div class="modal-top">
+                <div class="profile-change__heading">프로필 변경</div>
+                <button type="button" class="close-btn">
+                  <i class="fa fa-close"></i>
+                  <span class="screen-reader-text">닫기</span>
+                </button>
+              </div>
+              <div class="modal-content">
+                <div class="profile-upload">
+                  <!-- ... -->
+                </div>
+              </div>
+            </div>
+            <div
+              class="profile-change-modal__overlay only-desktop hidden"
+            ></div>
+          </div>
+        </div>
+        <div class="editUserInfo__password">
+          <strong>아이디</strong>
+          <div class="info-wrap">
+            <span>gildong@gildong.com</span>
+            <button class="password-change" type="button">비밀번호 변경</button>
+          </div>
+        </div>
+        <div class="editUserInfo__nickname">
+          <strong>닉네임</strong>
+          <div class="info-wrap">
+            <span>박병찬</span>
+            <button class="nickname-change" type="button">변경</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="../js/header.js"></script>
+  </body>
+</html>

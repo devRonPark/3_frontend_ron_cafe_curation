@@ -1,0 +1,93 @@
+.editUserInfo {
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1.4rem;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgb(68 68 68);
+}
+.editUserInfo .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #404040;
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #c6c6c6;
+}
+.editUserInfo div:not(:nth-child(2)) strong {
+  margin-right: 1rem;
+}
+.editUserInfo__profile {
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #dadada;
+}
+.editUserInfo__password,
+.editUserInfo__nickname {
+  display: flex;
+  padding: 0.75rem 0;
+  border-bottom: 2px solid #dadada;
+}
+.editUserInfo div:not(:nth-child(2)) .info-wrap {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+}
+.password-change,
+.nickname-change {
+  background: #c0392b;
+  color: #ffffff;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+#preview-image {
+  width: 10.5rem;
+  height: 10.5rem;
+  border-radius: 50%;
+}
+
+.editUserInfo div:nth-child(2) .info-wrap {
+  width: 10.5rem;
+  position: relative;
+}
+
+.profile-change {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #e4e6eb;
+  position: absolute;
+  bottom: 1.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+}
+.profile-change i {
+  font-size: 1.125rem;
+}
+.profile-change:hover {
+  background: #bdbbbb;
+}
+
+@media (max-width: 380px) {
+  .editUserInfo__password,
+  .editUserInfo__nickname {
+    flex-direction: column;
+  }
+  .info-wrap {
+    margin-top: 0.5rem;
+  }
+}
+@media (max-width: 315px) {
+  .editUserInfo div:not(:nth-child(2)) .info-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .editUserInfo div:not(:nth-child(2)) .info-wrap span {
+    margin-bottom: 0.25rem;
+  }
+}
