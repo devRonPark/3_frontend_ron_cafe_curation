@@ -1,6 +1,7 @@
 {
   "name": "3_frontend_ron_cafe_curation",
   "version": "1.0.0",
+  "type": "module",
   "description": "3기 풀스택반 ron 나만 아는 카페 공유 서비스",
   "main": "index.js",
   "scripts": {
