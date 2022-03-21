@@ -16,7 +16,7 @@
   padding-right: 15px;
 }
 .header__nav button,
-.header__search {
+.header__search button {
   width: 2rem;
   height: 2rem;
   font-size: 1.125rem;
