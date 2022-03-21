@@ -5,17 +5,25 @@ input:focus {
   outline: none;
 }
 .hidden {
-  overflow: hidden;
-  border: 0;
+  position: absolute;
   width: 1px;
   height: 1px;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  display: inline-block;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
+}
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
 }
 #content {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 #content > article {
   width: 1200px;

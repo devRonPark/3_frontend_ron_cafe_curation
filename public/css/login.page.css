@@ -35,12 +35,13 @@
   position: relative;
 }
 .input-wrap > .login-input {
-  padding: 1rem 0.4rem;
+  padding: 1rem 0.4rem 1rem 0.7rem;
   width: 100%;
   border: 1px solid #dadada;
+  transition: border 0.3s;
 }
-.input-wrap > .login-input.active {
-  border: 1px solid #03c75a;
+.input-wrap > .login-input:focus {
+  border: 1px solid #66afe9;
 }
 
 .input-wrap > .icon-wrap {

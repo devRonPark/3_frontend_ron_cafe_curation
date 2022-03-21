@@ -1,14 +1,12 @@
-const body = document.body;
 const pwdRevealBtn = document.querySelector('.pwd-reveal');
-const emailInput = document.querySelector('#email-address');
-const passwordInput = document.querySelector('#password');
-const domElemList = [pwdRevealBtn, emailInput, passwordInput];
 
 const handlePwdReveal = evt => {
   const target = evt.currentTarget;
+  console.log('target: ', target);
   const pwdInput = target.previousElementSibling;
+  console.log('pwdInput: ', pwdInput);
   const icon = target.children[0];
-  pwdInput.classList.toggle('active');
+  target.classList.toggle('active');
 
   if (target.classList.contains('active')) {
     pwdInput.type = 'text';
@@ -21,23 +19,5 @@ const handlePwdReveal = evt => {
   }
   pwdInput.focus();
 };
-const handleInputActivate = evt => {
-  const target = evt.currentTarget;
-  target.classList.add('active');
-};
-const handleBodyClick = evt => {
-  const target = evt.target;
-  if (domElemList.includes(target)) {
-    return;
-  }
-
-  if (emailInput.classList.contains('active'))
-    emailInput.classList.remove('active');
-  if (passwordInput.classList.contains('active'))
-    passwordInput.classList.remove('active');
-};
 // 비밀번호 보기/숨기기 기능
 pwdRevealBtn.addEventListener('click', handlePwdReveal);
-emailInput.addEventListener('click', handleInputActivate);
-passwordInput.addEventListener('click', handleInputActivate);
-body.addEventListener('click', handleBodyClick);
