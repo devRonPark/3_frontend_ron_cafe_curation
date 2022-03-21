@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <script src="https://kit.fontawesome.com/0e5a8c1c44.js" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카페 상세 정보 | JJINCAFE IN SEOUL</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/cafeDetail.css">
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../images/favicon.ico"
+    />
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header class="header">
+      <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+      <div class="header__nav">
+        <button type="button" class="header__nav-btn">
+          <i class="nav-btn__icon fa fa-bars"></i>
+          <span class="screen-reader-text">네비게이션 메뉴 열기 버튼</span>
+        </button>
+        <div class="nav-modal__overlay"></div>
+        <!-- Navigation links (hidden by default) -->
+        <!-- Hamburger 메뉴 클릭 시 활성화됨. -->
+        <div class="nav-modal">
+          <div class="title screen-reader-text">
+            <h2>네비게이션 메뉴 창</h2>
+          </div>
+          <div class="close-area">
+            <a href="javascript:void(0)" class="close-area__close-btn">
+              <i class="fa fa-close"></i>
+              <span class="screen-reader-text">닫기</span>
+            </a>
+          </div>
+          <div class="nav-modal__content">
+            <ul class="nav-menu__list">
+              <li class="nav-menu__item">
+                <a href="/account/login">로그인</a>
+              </li>
+              <li class="nav-menu__item">
+                <a href="/main">메인</a>
+              </li>
+              <li class="nav-menu__item">
+                <a href="/top-lists">평점 높은 카페 리스트</a>
+              </li>
+              <li class="nav-menu__item">
+                <a href="/service#contact">문의하기</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="header__logo">
+        <div class="logo">
+          <a href="/main" class="logo__link">
+            <h1>JJINCAFE IN SEOUL</h1>
+          </a>
+        </div>
+      </div>
+      <div class="header__search">
+        <button type="button" class="header__search-btn">
+          <i class="search-btn__icon fas fa-search"></i>
+          <span class="screen-reader-text">검색 버튼</span>
+        </button>
+        <div class="search-modal">
+          <div class="title screen-reader-text">
+            <h2>검색 창</h2>
+          </div>
+          <div class="search-modal__header">
+            <button type="button" class="close-btn">
+              <i class="fa fa-arrow-left"></i>
+              <span class="screen-reader-text">닫기</span>
+            </button>
+            <form action="/search" method="get" class="search-form">
+              <label>
+                <input type="search" class="search-form__input" />
+                <button
+                  type="button"
+                  class="search-form__btn search-form__filter-btn"
+                >
+                  <i class="filter-btn__icon fas fa-sliders"></i>
+                  <span class="screen-reader-text">검색 필터 열기 버튼</span>
+                </button>
+                <div class="search-filter-modal">
+                  <button type="button" class="search-filter-modal__close-btn">
+                    <i class="fa fa-close"></i>
+                    <span class="screen-reader-text">닫기</span>
+                  </button>
+                  <div class="search-filter__option">
+                    <label class="filterName" for="city">시</label>
+                    <div id="city" class="selectBox">
+                      <div id="citySelectField" class="selectField">
+                        <p id="citySelectText" class="selectText">
+                          시를 선택해주세요.
+                        </p>
+                        <img src="../images/arrow.png" class="arrowIcon" />
+                      </div>
+                      <ul id="cityList" class="list hide">
+                        <li class="option">서울특별시</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="search-filter__option">
+                    <label class="filterName" for="gu">구</label>
+                    <div id="gu" class="selectBox">
+                      <div id="guSelectField" class="selectField">
+                        <p id="guSelectText" class="selectText">
+                          구를 선택해주세요.
+                        </p>
+                        <img src="../images/arrow.png" class="arrowIcon" />
+                      </div>
+                      <ul id="guList" class="list hide">
+                        <li class="option">강남구</li>
+                        <li class="option">강동구</li>
+                        <li class="option">강북구</li>
+                        <li class="option">강서구</li>
+                        <li class="option">관악구</li>
+                        <li class="option">광진구</li>
+                        <li class="option">구로구</li>
+                        <li class="option">금천구</li>
+                        <li class="option">노원구</li>
+                        <li class="option">도봉구</li>
+                        <li class="option">동대문구</li>
+                        <li class="option">동작구</li>
+                        <li class="option">마포구</li>
+                        <li class="option">서대문구</li>
+                        <li class="option">서초구</li>
+                        <li class="option">성동구</li>
+                        <li class="option">성북구</li>
+                        <li class="option">양천구</li>
+                        <li class="option">영등포구</li>
+                        <li class="option">용산구</li>
+                        <li class="option">은평구</li>
+                        <li class="option">종로구</li>
+                        <li class="option">중구</li>
+                        <li class="option">중랑구</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="search-filter__option">
+                    <label class="filterName" for="dong">동</label>
+                    <div id="dong" class="selectBox">
+                      <div id="dongSelectField" class="selectField">
+                        <p id="dongSelectText" class="selectText">
+                          동을 선택해주세요.
+                        </p>
+                        <img src="../images/arrow.png" class="arrowIcon" />
+                      </div>
+                      <ul id="dongList" class="list hide"></ul>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="search-form__btn search-form__search-btn"
+                >
+                  <i class="fa fa-search"></i>
+                  <span class="hidden">Search</span>
+                </button>
+              </label>
+            </form>
+          </div>
+          <div class="search-modal__content">
+            <div class="recent-keyword">
+              <h3>최근 검색어</h3>
+              <ul class="recent-keyword__list">
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+                <li class="recent-keyword__item">
+                  <a href="/search?name=스타벅스">스타벅스</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <article class="contents">
+        <aside class="cafe-photo">
+          <div class="thumb">
+            <img
+              src="../images/cafe_card_thumbnail.jpeg"
+              alt="스타벅스 사진 - 서울시 강남구 역삼동 676"
+            />
+          </div>
+        </aside>
+        <div class="column-wrapper">
+            <div class="column-contents">
+                <section class="cafe-detail">
+                    <header>
+                        <div class="cafe_title_wrap">
+                            <span class="title">
+                                <h1 class="cafe_name">스타벅스</h1>
+                                <strong class="rate-point">3.7</strong>
+                            </span>
+                            <div class="cafe_action_button_wrap">
+                                <div class="wannago_btn_wrap">
+                                    <button class="wannago_btn" type="button">
+                                        <i class="far fa-heart"></i>
+                                        <span class="screen-reader-text">좋아요 버튼</span>
+                                    </button>
+                                    <p class="wannago_txt">가고 싶다</p>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="status">
+                            <li class="view_count">
+                              <span class="screen-reader-text">조회수</span>
+                              <i class="fas fa-eye"></i>
+                              <span class="point">109</span>
+                            </li>
+                            <li class="review_count">
+                              <span class="screen-reader-text">리뷰수</span>
+                              <i class="fas fa-comment"></i>
+                              <span class="point">3</span>
+                            </li>
+                            <li class="like_count">
+                              <span class="screen-reader-text">좋아요수</span>
+                              <i class="fas fa-heart"></i>
+                              <span class="point">270</span>
+                            </li>
+                        </ul>
+                    </header>
+                    <ul class="cafe__infoList only-mobile">
+                        <li class="cafe__infoItem">
+                            <div class="cafe__infoItemMapContainer">지도 내 카페 위치 표시</div>
+                            <div class="cafe__infoItemLabel">
+                                <div class="cafe__infoItemLabel--roadAddress">
+                                    <span class="address-label">도로명</span>
+                                    <span class="address-text">서울특별시 동작구 상도로 102</span>
+                                </div>
+                                <div class="cafe__infoItemLabel--jibunAddress">
+                                    <span class="address-label">지번</span>
+                                    <span class="address-text">서울특별시 동작구 상도동 324-1</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cafe__infoItem">
+                            <div class="cafe__infoItemLabel">
+                                <span class="tel-label">
+                                    <i class="fa fa-phone"></i>
+                                    <span class="screen-reader-text">전화번호</span>
+                                </span>
+                                <span class="tel-text">1522-3232</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <table class="cafe__detailInfoList">
+                      <caption class="screen-reader-text">카페 상세 정보</caption>
+                      <tbody>
+                          <tr class="only-desktop">
+                              <th>주소</th>
+                              <td>
+                                <div class="cafe__infoItemLabel--roadAddress">
+                                    <span class="address-label">도로명</span>
+                                    <span class="address-text">서울특별시 동작구 상도로 102</span>
+                                </div>
+                                <div class="cafe__infoItemLabel--jibunAddress">
+                                    <span class="address-label">지번</span>
+                                    <span class="address-text">서울특별시 동작구 상도동 324-1</span>
+                                </div>
+                              </td>
+                          </tr>
+                          <tr class="only-desktop">
+                              <th>전화번호</th>
+                              <td>1522-3232</td>
+                          </tr>
+                          <tr>
+                              <th>메뉴</th>
+                              <td>
+                                  아메리카노: 2500원
+                                  <br />
+                                  카페라떼 : 3000원
+                                  <br />
+                                  카라멜 마키아또: 4000원
+                              </td>
+                          </tr>
+                          <tr>
+                              <th>영업시간</th>
+                              <td>
+                                월-금: 08:30 - 22:30
+                                <br />
+                                토-일: 09:30 - 22:30
+                              </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                    <p class="update_date">
+                        업데이트 : 2022. 3. 15
+                    </p>
+                </section>
+                <section class="reviews">
+                  <h4 class="reviews__heading">
+                    <span class="title">리뷰</span>
+                    <div class="review-write">
+                      <button type="button" class="review-write__btn">
+                        <i class="fas fa-pen"></i>
+                        <span>리뷰 작성</span>
+                      </button>
+                      <!-- 리뷰 작성 모달 -->
+                      <div class="review-write-modal">
+                        <div class="modal-top">
+                          <button type="button" class="desktop-close-btn only-desktop">
+                            <i class="fa fa-close"></i>
+                            <span class="screen-reader-text">닫기</span>
+                          </button>
+                          <button type="button" class="mobile-close-btn only-mobile">
+                            <i class="fa fa-arrow-left"></i>
+                            <span class="screen-reader-text">닫기</span>
+                          </button>
+                        </div>
+                        <div class="modal-content">
+                          <form class="review-write-form">
+                            <div class="review-write-form__heading">리뷰 작성하기</div>
+                            <div class="review-write-form__star-widget">
+                              <input type="radio" name="rate" id="rate-5" />
+                              <label for="rate-5" class="fas fa-star"></label>
+                              <input type="radio" name="rate" id="rate-4" />
+                              <label for="rate-4" class="fas fa-star"></label>
+                              <input type="radio" name="rate" id="rate-3" />
+                              <label for="rate-3" class="fas fa-star"></label>
+                              <input type="radio" name="rate" id="rate-2" />
+                              <label for="rate-2" class="fas fa-star"></label>
+                              <input type="radio" name="rate" id="rate-1" />
+                              <label for="rate-1" class="fas fa-star"></label>
+                              <span class="emoji-wrap"></span>
+                            </div>
+                            <textarea class="review-write-form__input" placeholder="리뷰를 작성하세요."></textarea>
+                            <button class="review-write-form__submit-btn" type="submit" disabled>등록하기</button>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="review-write-modal__overlay only-desktop"></div>
+                    </div>
+                  </h4>
+            
+                  <div class="reviews__average-ratings">
+                    <div class="average-ratings__stars">
+                      <div class="stars__single">
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="stars__single">
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="stars__single">
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="stars__single">
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="stars__single">
+                        <i class="fas fa-star"></i>
+                      </div>
+            
+                      <span class="stars__average-rating-score">4.7 / 5</span>
+                    </div>
+            
+                    <div class="average-rating__total-customers">
+                      총 리뷰 수(40)
+                    </div>
+                  </div>
+            
+                  <div class="reviews__breakdown">
+                    <div class="reviews-breakdown__wrapper">
+                      <div class="reviews__single-star-average">
+                        <div class="single-star-average__amount">5</div>
+                        <div class="single-star-average__progress-bar">
+                          <progress
+                            class="progress-bar__data"
+                            max="100"
+                            value="84"
+                          ></progress>
+                        </div>
+                        <div class="single-star-average__percentage">84%</div>
+                      </div>
+                      <div class="reviews__single-star-average">
+                        <div class="single-star-average__amount">4</div>
+                        <div class="single-star-average__progress-bar">
+                          <progress
+                            class="progress-bar__data"
+                            max="100"
+                            value="9"
+                          ></progress>
+                        </div>
+                        <div class="single-star-average__percentage">9%</div>
+                      </div>
+                      <div class="reviews__single-star-average">
+                        <div class="single-star-average__amount">3</div>
+                        <div class="single-star-average__progress-bar">
+                          <progress
+                            class="progress-bar__data"
+                            max="100"
+                            value="4"
+                          ></progress>
+                        </div>
+                        <div class="single-star-average__percentage">4%</div>
+                      </div>
+                      <div class="reviews__single-star-average">
+                        <div class="single-star-average__amount">2</div>
+                        <div class="single-star-average__progress-bar">
+                          <progress
+                            class="progress-bar__data"
+                            max="100"
+                            value="2"
+                          ></progress>
+                        </div>
+                        <div class="single-star-average__percentage">2%</div>
+                      </div>
+                      <div class="reviews__single-star-average">
+                        <div class="single-star-average__amount">1</div>
+                        <div class="single-star-average__progress-bar">
+                          <progress
+                            class="progress-bar__data"
+                            max="100"
+                            value="1"
+                          ></progress>
+                        </div>
+                        <div class="single-star-average__percentage">1%</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- review-search-->
+                  <div class="review-search">
+                    <form action="/search" method="get">
+                        <label>
+                          <input
+                            class="review-search__input"
+                            name="review-search"
+                            type="search"
+                            maxlength="50"
+                            placeholder="사용자 이름으로 리뷰 검색"
+                            autocomplete="off"
+                          />
+                        </label>
+                        <button class="btn-search" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                  </div>
+
+                  <!-- review-box-container -->
+                  <div class="review-box-container">
+                    <!-- BOX-1 -->
+                    <div class="review-box">
+                      <!-- top -->
+                      <div class="box-top">
+                        <!-- profile -->
+                        <div class="profile">
+                          <div class="profile-img">
+                            <img src="../images/1.jpg" alt="user profile" />
+                          </div>
+                          <!-- name-and-username -->
+                          <div class="user-name">
+                            <strong>Touseeq Ijaz</strong>
+                          </div>
+                        </div>
+                        <!-- reviews -->
+                        <div class="user-average-ratings">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i> <!-- Empty star -->
+                        </div>
+                      </div>
+
+                      <!-- Comments -->
+                      <div class="user-comment">
+                        <p class="comment-txt">
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                          Adipisci, nisi? Non, aliquam aperiam quo officia impedit,
+                          laboriosam autem culpa, eveniet eius repellat obcaecati eaque id.
+                          Nostrum architecto reiciendis at debitis?
+                        </p>
+                        <p class="create_date">
+                          24분 전
+                        </p>
+                      </div>
+                    </div>
+                    <!-- BOX-2 -->
+                    <div class="review-box">
+                      <!-- top -->
+                      <div class="box-top">
+                        <!-- profile -->
+                        <div class="profile">
+                          <div class="profile-img">
+                            <img src="../images/1.jpg" alt="user profile" />
+                          </div>
+                          <!-- name-and-username -->
+                          <div class="user-name">
+                            <strong>Touseeq Ijaz</strong>
+                          </div>
+                        </div>
+                        <!-- reviews -->
+                        <div class="user-average-ratings">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i> <!-- Empty star -->
+                        </div>
+                      </div>
+
+                      <!-- Comments -->
+                      <div class="user-comment">
+                        <p class="comment-txt">
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                          Adipisci, nisi? Non, aliquam aperiam quo officia impedit,
+                          laboriosam autem culpa, eveniet eius repellat obcaecati eaque id.
+                          Nostrum architecto reiciendis at debitis?
+                        </p>
+                        <p class="create_date">3시간 전</p>
+                      </div>
+                    </div>
+                    <!-- BOX-3 -->
+                    <div class="review-box">
+                      <!-- top -->
+                      <div class="box-top">
+                        <!-- profile -->
+                        <div class="profile">
+                          <div class="profile-img">
+                            <img src="../images/1.jpg" alt="user profile" />
+                          </div>
+                          <!-- name-and-username -->
+                          <div class="user-name">
+                            <strong>Touseeq Ijaz</strong>
+                          </div>
+                        </div>
+                        <!-- reviews -->
+                        <div class="user-average-ratings">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i> <!-- Empty star -->
+                        </div>
+                      </div>
+
+                      <!-- Comments -->
+                      <div class="user-comment">
+                        <p class="review_txt">
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                          Adipisci, nisi? Non, aliquam aperiam quo officia impedit,
+                          laboriosam autem culpa, eveniet eius repellat obcaecati eaque id.
+                          Nostrum architecto reiciendis at debitis?
+                        </p>
+                        <p class="create_date">
+                          4시간 전
+                        </p>
+                      </div>
+                    </div>
+                    <!-- BOX-4 -->
+                    <div class="review-box">
+                      <!-- top -->
+                      <div class="box-top">
+                        <!-- profile -->
+                        <div class="profile">
+                          <div class="profile-img">
+                            <img src="../images/1.jpg" alt="user profile" />
+                          </div>
+                          <!-- name-and-username -->
+                          <div class="user-name">
+                            <strong>Touseeq Ijaz</strong>
+                          </div>
+                        </div>
+                        <!-- reviews -->
+                        <div class="user-average-ratings">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i> <!-- Empty star -->
+                        </div>
+                      </div>
+
+                      <!-- Comments -->
+                      <div class="user-comment">
+                        <p class="review-txt">
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                          Adipisci, nisi? Non, aliquam aperiam quo officia impedit,
+                          laboriosam autem culpa, eveniet eius repellat obcaecati eaque id.
+                          Nostrum architecto reiciendis at debitis?
+                        </p>
+                        <p class="create_date">
+                          1일 전
+                        </p>
+                      </div>
+                    </div>
+                    <!-- BOX-5 -->
+                    <div class="review-box">
+                      <!-- top -->
+                      <div class="box-top">
+                        <!-- profile -->
+                        <div class="profile">
+                          <div class="profile-img">
+                            <img src="../images/1.jpg" alt="user profile" />
+                          </div>
+                          <!-- name-and-username -->
+                          <div class="user-name">
+                            <strong>Touseeq Ijaz</strong>
+                          </div>
+                        </div>
+                        <!-- reviews -->
+                        <div class="user-average-ratings">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i> <!-- Empty star -->
+                        </div>
+                      </div>
+
+                      <!-- Comments -->
+                      <div class="user-comment">
+                        <p class="review-txt">
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                          Adipisci, nisi? Non, aliquam aperiam quo officia impedit,
+                          laboriosam autem culpa, eveniet eius repellat obcaecati eaque id.
+                          Nostrum architecto reiciendis at debitis?
+                        </p>
+                        <p class="create_date">
+                          5일 전
+                        </p>
+                      </div>
+                    </div>
+                    <!-- BOX-6 -->
+                    <div class="review-box">
+                      <!-- top -->
+                      <div class="box-top">
+                        <!-- profile -->
+                        <div class="profile">
+                          <div class="profile-img">
+                            <img src="../images/1.jpg" alt="user profile" />
+                          </div>
+                          <!-- name-and-username -->
+                          <div class="user-name">
+                            <strong>Touseeq Ijaz</strong>
+                          </div>
+                        </div>
+                        <!-- reviews -->
+                        <div class="user-average-ratings">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i> <!-- Empty star -->
+                        </div>
+                      </div>
+
+                      <!-- Comments -->
+                      <div class="user-comment">
+                        <p class="review-txt">
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                          Adipisci, nisi? Non, aliquam aperiam quo officia impedit,
+                          laboriosam autem culpa, eveniet eius repellat obcaecati eaque id.
+                          Nostrum architecto reiciendis at debitis?
+                        </p>
+                        <p class="create_date">
+                          7일 전
+                        </p>
+                      </div>
+                    </div>
+                    <!-- BOX-7 -->
+                    <div class="review-box">
+                      <!-- top -->
+                      <div class="box-top">
+                        <!-- profile -->
+                        <div class="profile">
+                          <div class="profile-img">
+                            <img src="../images/1.jpg" alt="user profile" />
+                          </div>
+                          <!-- name-and-username -->
+                          <div class="user-name">
+                            <strong>Touseeq Ijaz</strong>
+                          </div>
+                        </div>
+                        <!-- reviews -->
+                        <div class="user-average-ratings">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i> <!-- Empty star -->
+                        </div>
+                      </div>
+
+                      <!-- Comments -->
+                      <div class="user-comment">
+                        <p class="review-txt">
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                          Adipisci, nisi? Non, aliquam aperiam quo officia impedit,
+                          laboriosam autem culpa, eveniet eius repellat obcaecati eaque id.
+                          Nostrum architecto reiciendis at debitis?
+                        </p>
+                        <p class="create_date">
+                          2021-03-09
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+            </div>
+        </div>
+      </article>
+    </main>
+    <script src="../js/header.js"></script>
+    <script src="../js/writeReview.js"></script>
+</html>
