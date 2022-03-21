@@ -1,5 +1,9 @@
-import { createAreaElem } from './area.js';
-import { createBtnElem } from './button.js';
+import createWrapper from '../wrapper/Wrapper.js';
+import { createAreaElem } from './Area.js';
+import createBtnElem from '../button/Button.js';
+import navModalElem from '../modal/NavModal.js';
+import searchModalElem from '../modal/SearchModal.js';
+import { createModalOverlay } from '../modal/Modal.js';
 
 // navBtn 컴포넌트에 주입될 클래스 이름 목록 정의
 const navBtnClassObj = {
@@ -14,21 +18,26 @@ const searchBtnClassObj = {
   textElem: 'screen-reader-text',
 };
 
+/* ----- header에 필요한 DOM 요소 생성 ----- */
 const headerElem = document.createElement('header');
 /* <header class="header"></header> */
 headerElem.classList.add('header');
 
+const wrapperElem = createWrapper();
 const headerNavAreaElem = createAreaElem('header__nav');
 const headerLogoAreaElem = createAreaElem('header__logo');
 const headerSearchAreaElem = createAreaElem('header__search');
-// navBtn 컴포넌트 생성
+// navBtn 요소 생성
 const navBtnElem = createBtnElem(
   navBtnClassObj,
   'button',
   '네비게이션 메뉴 열기 버튼',
 );
-// searchBtn 컴포넌트 생성
+// navigation 모달 오버레이 요소 생성
+const navModalOverlayElem = createModalOverlay();
+// searchBtn 요소 생성
 const searchBtnElem = createBtnElem(searchBtnClassObj, 'button', '검색 버튼');
+// logo 요소 생성
 const logoElem = document.createElement('div');
 const logoLinkElem = document.createElement('a');
 
@@ -37,16 +46,27 @@ logoElem.classList.add('logo');
 /* <a href="/main" class="logo__link">JJINCAFE IN SEOUL</a> */
 logoLinkElem.classList.add('logo__link');
 logoLinkElem.textContent = 'JJINCAFE IN SEOUL';
+/* --------------------------------- */
 
+/* ----- DOM 요소 추가 ----- */
 /* 생성된 logoLink 요소 부모 DOM 요소에 주입 */
 logoElem.appendChild(logoLinkElem);
 /* 생성된 navBtn, logo, searchBtn 요소 부모 DOM 요소에 주입 */
 headerNavAreaElem.appendChild(navBtnElem);
 headerLogoAreaElem.appendChild(logoElem);
 headerSearchAreaElem.appendChild(searchBtnElem);
+/* 생성된 navModal 요소 부모 DOM 요소에 주입 */
+headerNavAreaElem.appendChild(navModalElem);
+/* 생성된 navModalOverlay 요소 부모 DOM 요소에 주입 */
+headerNavAreaElem.appendChild(navModalOverlayElem);
+/* 생성된 searchModal 요소 부모 DOM 요소에 주입 */
+headerSearchAreaElem.appendChild(searchModalElem);
 /* 생성된 headerNavArea, headerLogoArea, headerSearchArea 요소 부모 DOM 요소에 주입 */
-headerElem.appendChild(headerNavAreaElem);
-headerElem.appendChild(headerLogoAreaElem);
-headerElem.appendChild(headerSearchAreaElem);
-
+wrapperElem.appendChild(headerNavAreaElem);
+wrapperElem.appendChild(headerLogoAreaElem);
+wrapperElem.appendChild(headerSearchAreaElem);
+// 생성된 wrapper 요소 부모 DOM 요소에 주입
+headerElem.appendChild(wrapperElem);
+// header 요소 document.body에 주입
 document.body.appendChild(headerElem);
+/* --------------------- */
