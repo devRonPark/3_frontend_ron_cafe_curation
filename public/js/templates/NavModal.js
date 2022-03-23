@@ -1,5 +1,5 @@
-import { createModal } from './Modal.js';
-import createCloseBtn from '../button/CloseButton.js';
+import { createModal } from '../components/modal/Modal.js';
+import createCloseBtn from '../components/button/CloseButton.js';
 
 /* <div class="nav-modal">
   <div class="title screen-reader-text">

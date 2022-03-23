@@ -1,6 +1,9 @@
-import { createModal } from './Modal.js';
-import { createSearchInput, createSearchForm } from '../form/SearchForm.js';
-import createCloseBtn from '../button/CloseButton.js';
+import { createModal } from '../components/modal/Modal.js';
+import { createSearchInput, createSearchForm } from '../components/form/SearchForm.js';
+import createCloseBtn from '../components/button/CloseButton.js';
+import createBtnElem from '../components/button/Button.js';
+import createAreaElem from '../components/area/Area.js';
+
 /*
 <div class="search-modal">
   <div class="title screen-reader-text">
@@ -55,6 +58,24 @@ const btnContentList = [
 ];
 */
 
+function createSearchFilterBtn() {
+  // <button type="button" class="search-form__btn search-form__filter-btn">
+  //   <i class="filter-btn__icon fas fa-sliders-h"></i>
+  //   <span class="screen-reader-text">검색 필터 열기 버튼</span>
+  // </button>
+  const searchFilterBtnclassObj = {buttonElem: "search-filter__btn", iconElem: ['fas', 'fa-sliders-h'], textElem: "screen-reader-text"}
+  const searchFilterBtn = createBtnElem(searchFilterBtnclassObj, 'button', '검색 필터 열기 버튼');
+  return searchFilterBtn;
+}
+
+function createSearchFilterBox() {
+  const searchFilterArea = createAreaElem('search-filter');
+  const searchFilterBtn = createSearchFilterBtn();
+  
+  searchFilterArea.appendChild(searchFilterBtn);
+  return searchFilterArea;
+}
+
 // 검색 모달 창 콘텐츠 컴포넌트 생성
 function createSearchModalContent(recentKeywordData) {
   const recentKeywordElem = document.createElement('div');
@@ -105,16 +126,17 @@ const searchModalCloseBtnElem = createCloseBtn(
 const searchInputOption = {
   className: 'search-form__input',
   maxLength: 50,
-  placeholder: '카페 이름으로 검색해주세요.',
+  placeholder: '카페 이름으로 검색',
   autocomplete: 'off',
 };
 const searchInputElem = createSearchInput(searchInputOption);
 const searchFormElem = createSearchForm(searchInputElem);
+const searchFilterBoxElem = createSearchFilterBox();
 const searchModalContentElem = createSearchModalContent();
 const searchModalElem = createModal(
   'search-modal',
   '검색 창',
-  searchFormElem,
+  [searchFormElem, searchFilterBoxElem],
   searchModalContentElem,
   searchModalCloseBtnElem,
 );

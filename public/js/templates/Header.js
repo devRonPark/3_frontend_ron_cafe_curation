@@ -1,9 +1,7 @@
-import createWrapper from '../wrapper/Wrapper.js';
-import { createAreaElem } from './Area.js';
-import createBtnElem from '../button/Button.js';
-import navModalElem from '../modal/NavModal.js';
-import searchModalElem from '../modal/SearchModal.js';
-import { createModalOverlay } from '../modal/Modal.js';
+import createWrapper from '../components/wrapper/Wrapper.js';
+import createAreaElem from '../components/area/Area.js';
+import createBtnElem from '../components/button/Button.js';
+
 
 // navBtn 컴포넌트에 주입될 클래스 이름 목록 정의
 const navBtnClassObj = {
@@ -33,8 +31,7 @@ const navBtnElem = createBtnElem(
   'button',
   '네비게이션 메뉴 열기 버튼',
 );
-// navigation 모달 오버레이 요소 생성
-const navModalOverlayElem = createModalOverlay();
+
 // searchBtn 요소 생성
 const searchBtnElem = createBtnElem(searchBtnClassObj, 'button', '검색 버튼');
 // logo 요소 생성
@@ -55,12 +52,6 @@ logoElem.appendChild(logoLinkElem);
 headerNavAreaElem.appendChild(navBtnElem);
 headerLogoAreaElem.appendChild(logoElem);
 headerSearchAreaElem.appendChild(searchBtnElem);
-/* 생성된 navModal 요소 부모 DOM 요소에 주입 */
-headerNavAreaElem.appendChild(navModalElem);
-/* 생성된 navModalOverlay 요소 부모 DOM 요소에 주입 */
-headerNavAreaElem.appendChild(navModalOverlayElem);
-/* 생성된 searchModal 요소 부모 DOM 요소에 주입 */
-headerSearchAreaElem.appendChild(searchModalElem);
 /* 생성된 headerNavArea, headerLogoArea, headerSearchArea 요소 부모 DOM 요소에 주입 */
 wrapperElem.appendChild(headerNavAreaElem);
 wrapperElem.appendChild(headerLogoAreaElem);

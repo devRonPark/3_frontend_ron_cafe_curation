@@ -19,7 +19,6 @@ export default function createBtnElem(classNameObj, btnType, btnName) {
   } else {
     btnElem.classList.add(classNameObj.buttonElem);
   }
-  console.log(btnElem.classList);
   /* 각 요소 별 클래스 이름 추가 */
   iconElem.classList.add(...classNameObj.iconElem);
   btnNameElem.classList.add(classNameObj.textElem);

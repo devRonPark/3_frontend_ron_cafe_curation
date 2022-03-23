@@ -12,8 +12,8 @@ export function createModalOverlay() {
 export function createModal(
   className,
   modalName,
-  modalTopContentElem,
-  modalContentElem,
+  modalTopContentElemList,
+  modalContentElemList,
   closeBtnElemList,
 ) {
   const modalElem = document.createElement('div');
@@ -36,7 +36,6 @@ export function createModal(
   modalNameElem.textContent = modalName;
   // 모달 창 닫기 버튼 추가
   // 모달 창 닫기 버튼이 두 개 존재할 경우(장치에 따라 데스크톱, 모바일 버전 구분)
-  console.log(typeof closeBtnElemList);
   if (Array.isArray(closeBtnElemList)) {
     closeBtnElemList.forEach(closeBtnElem =>
       modalTopElem.appendChild(closeBtnElem),
@@ -46,10 +45,29 @@ export function createModal(
     modalTopElem.appendChild(closeBtnElemList);
   }
 
-  // modalTopContentElem 요소가 존재하는 경우
-  modalTopContentElem && modalTopElem.appendChild(modalTopContentElem);
-  // modalContentElem 요소가 존재하는 경우
-  modalContentElem && modalContentWrapperElem.appendChild(modalContentElem);
+  if (modalTopContentElemList) {
+    // modalTop에 추가될 요소가 2개 이상 존재할 경우
+    if (Array.isArray(modalTopContentElemList)) {
+      modalTopContentElemList.forEach(modalTopContentElem =>
+        modalTopElem.appendChild(modalTopContentElem),
+      );
+    // modalTop에 추가될 요소가 한 개인 경우
+    } else if (typeof modalTopContentElemList === 'object') {
+      modalTopElem.appendChild(modalTopContentElemList);
+    }
+  }
+
+  if (modalContentElemList) {
+    // modalContent에 추가될 요소가 2개 이상 존재할 경우
+    if (Array.isArray(modalContentElemList)) {
+      modalContentElemList.forEach(modalContentElem =>
+        modalContentWrapperElem.appendChild(modalContentElem),
+      );
+    // modalContent에 추가될 요소가 한 개인 경우
+    } else if (typeof modalTopContentElemList === 'object') {
+      modalContentWrapperElem.appendChild(modalContentElemList);
+    }
+  }
 
   modalElem.appendChild(modalNameElem);
   modalElem.appendChild(modalTopElem);
