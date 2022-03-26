@@ -1,0 +1,26 @@
+/* 드롭다운 메뉴 스타일링 */
+.btn-list {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  border: 1px solid;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}
+.btn-list__item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #ffffff;
+}
+.btn-list__item:hover {
+  background-color: #dedede;
+}
+.btn-list__item button {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}

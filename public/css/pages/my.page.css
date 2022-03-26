@@ -1,0 +1,79 @@
+@import url('../components/header.css');
+@import url('../components/modal.css');
+@import url('../components/userLikeCafeCardList.css');
+@import url('../components/userLikeCafeCard.css');
+@import url('../components/cardDropdownMenu.css');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* ----- 탭 메뉴 CSS 적용 ---- */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.tabs {
+  /* 탭 메뉴 수평정렬 */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  min-height: 80vh;
+  border-radius: 7px;
+  background-color: #ffffff;
+  overflow: auto;
+}
+.tab {
+  flex: 0.5;
+}
+/* 탭 헤더 */
+.tab label {
+  display: block;
+  padding: 15px 25px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-weight: 600;
+  color: #bbb;
+}
+.tab label:hover {
+  color: #2e9cdf;
+  cursor: pointer;
+}
+.tab [type="radio"] {
+  display: none;
+}
+
+.tab-content {
+  display: none;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100% - 4rem);
+  padding: 1.25rem;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
+/*input 클릭시, label 스타일*/
+.tab [type="radio"]:checked + label {
+  color: #2e9cdf;
+  border: 1px solid #ddd;
+  border-top: 2px solid #2e9cdf;
+  border-bottom: 1px solid #ffffff;
+}
+.tab [type="radio"]:checked ~ .tab-content {
+  display: block;
+}
+
+@media (max-width: 414px) {
+  .tab label {
+    font-size: 0.75rem;
+  }
+}

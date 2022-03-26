@@ -6,6 +6,7 @@ const path = require('path');
 
 const indexRouter = require('./src/routes/index.routes');
 
+// TODO 내가 허용한 폴더만 접근 가능하도록 public/html 로 변경
 app.use(express.static('public'));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use('/', indexRouter);

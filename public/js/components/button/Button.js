@@ -8,6 +8,9 @@
       <span class="screen-reader-text">검색 버튼</span>
     </button> 
 */
+// TODO 아이콘이 없는 경우 대응 필요!!!
+// 인자의 기본값 설정 중요(기본값을 설정할 인자는 뒤로 빼는 거)
+// 얼마나 다양한 상황에 대응할 수 있는가?
 export default function createBtnElem(classNameObj, btnType, btnName) {
   /* 필요한 DOM 요소 생성 */
   const btnElem = document.createElement('button');
