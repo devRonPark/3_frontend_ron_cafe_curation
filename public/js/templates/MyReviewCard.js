@@ -1,4 +1,9 @@
 import createIcon from '../components/icon/Icon.js';
+import createSelectMenuBox from '../components/selectBox/SelectBox.js';
+import {
+  handleCardMenuListOpen,
+  handleCardMenuClick,
+} from '../controllers/cardDropdownMenu.js';
 
 class MyReviewCard extends HTMLElement {
   constructor() {
@@ -44,7 +49,7 @@ class MyReviewCard extends HTMLElement {
       </div>
     </div>
   */
- // 해당 요소가 DOM에 추가될 때 브라우저가 호출함.
+  // 해당 요소가 DOM에 추가될 때 브라우저가 호출함.
   connectedCallback() {
     const cardTop = document.createElement('div');
     const cardContent = document.createElement('div');
@@ -59,10 +64,18 @@ class MyReviewCard extends HTMLElement {
     const userName = document.createElement('strong');
 
     const cafeName = document.createElement('p');
-    const commentTxt = document.createElement('p'); 
-    const createdAt = document.createElement('p'); 
+    const commentTxt = document.createElement('p');
+    const createdAt = document.createElement('p');
     const cafeIcon = createIcon(['fas', 'fa-coffee']);
-    const cafeNameTxtNode = document.createTextNode(this.getAttribute('cafe-name'));
+    const cafeNameTxtNode = document.createTextNode(
+      this.getAttribute('cafe-name'),
+    );
+    const menuNameList = [{ name: '수정' }, { name: '삭제' }];
+    const clickHandlerList = {
+      menuBtnHandler: handleCardMenuListOpen,
+      btnListHandler: handleCardMenuClick,
+    };
+    const selectBox = createSelectMenuBox(menuNameList, clickHandlerList);
 
     cardTop.classList.add('card-top');
     cardContent.classList.add('card-content');
@@ -83,13 +96,13 @@ class MyReviewCard extends HTMLElement {
     /* 
       TODO 전달받은 데이터에 따라서 평점을 어떻게 보여줄 것인지 CSS로 제어 필요
       Hint: gradient 이용 => 0.8인 경우 gradient: yellow(80%), white(20%)
-    */ 
+    */
     for (let i = 0; i < 5; i++) {
       // <i class="fas fa-star"></i>
-      const starIcon = createIcon(["fas", "fa-star"]);
+      const starIcon = createIcon(['fas', 'fa-star']);
       userAverageRatings.appendChild(starIcon);
     }
-    
+
     cafeName.appendChild(cafeIcon);
     cafeName.appendChild(cafeNameTxtNode);
     profileImageBox.appendChild(profileImage);
@@ -102,6 +115,7 @@ class MyReviewCard extends HTMLElement {
     cardTop.appendChild(userProfile);
     cardTop.appendChild(userAverageRatings);
     cardContent.appendChild(userComment);
+    cardContent.appendChild(selectBox);
     this.appendChild(cardTop);
     this.appendChild(cardContent);
   }
