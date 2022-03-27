@@ -2,7 +2,7 @@ import createWrapper from '../components/wrapper/Wrapper.js';
 import createAreaElem from '../components/area/Area.js';
 import createBtnElem from '../components/button/Button.js';
 
-
+const mainElem = document.querySelector('#content');
 // navBtn 컴포넌트에 주입될 클래스 이름 목록 정의
 const navBtnClassObj = {
   buttonElem: 'header__nav-btn',
@@ -58,6 +58,4 @@ wrapperElem.appendChild(headerLogoAreaElem);
 wrapperElem.appendChild(headerSearchAreaElem);
 // 생성된 wrapper 요소 부모 DOM 요소에 주입
 headerElem.appendChild(wrapperElem);
-// header 요소 document.body에 주입
-document.body.appendChild(headerElem);
-/* --------------------- */
+document.body.insertBefore(headerElem, mainElem);
