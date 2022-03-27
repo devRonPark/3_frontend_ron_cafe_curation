@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/pages/my.page.css" />
     <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="../images/favicon.ico"
+    rel="shortcut icon"
+    type="image/x-icon"
+    href="../images/favicon.ico"
     />
   </head>
   <body>
@@ -29,10 +29,11 @@
         <li class="tab">
           <input id="my_reviews" name="my_page" type="radio" />
           <label for="my_reviews">내가 쓴 리뷰</label>
-          <section id="my_reviews-content" class="tab-content">내가 쓴 리뷰 컨텐츠</section>
+          <section id="my_reviews-content" class="tab-content"></section>
         </li>
       </ul>
     </main>
-    <script type="module" src="../js/pages/my.page.js"></script>
+    <script type="module" defer src="../js/pages/my.page.js"></script>
+    <script type="module" defer src="../js/controllers/modal.js"></script>
   </body>
-</html>
+  </html>
