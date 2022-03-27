@@ -1,6 +1,10 @@
 import createDisplayLikeBox from '../components/display/LikeBox.js';
 import createSelectMenuBox from '../components/selectBox/SelectBox.js';
 import createCard from '../components/card/Card.js';
+import {
+  handleCardMenuListOpen,
+  handleCardMenuClick,
+} from '../controllers/cardDropdownMenu.js';
 
 /* 
 <li class="cafe-item">
@@ -34,8 +38,13 @@ export default function createUserLikeCafeCard(cafeInfo) {
   jibunAddrBox.classList.add('cafe-jibun-address');
   jibunAddrBox.textContent = cafeInfo.address;
   const displayLikeBox = createDisplayLikeBox();
-  const selectMenuBox = createSelectMenuBox();
-  const cafeContentElemList = [jibunAddrBox, displayLikeBox, selectMenuBox]; 
+  const menuNameList = [{ name: '관심 해제' }];
+  const clickHandlerList = {
+    menuBtnHandler: handleCardMenuListOpen,
+    btnListHandler: handleCardMenuClick,
+  };
+  const selectMenuBox = createSelectMenuBox(menuNameList, clickHandlerList);
+  const cafeContentElemList = [jibunAddrBox, displayLikeBox, selectMenuBox];
   const cafeItem = createCard(cafeInfo.name, cafeContentElemList);
 
   return cafeItem;
