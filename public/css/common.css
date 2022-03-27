@@ -33,6 +33,10 @@ input:focus {
   min-width: 350px;
 }
 
+.active {
+  display: flex !important;
+}
+
 @media only screen and (max-width: 769px) {
   .only-desktop {
     display: none !important;
