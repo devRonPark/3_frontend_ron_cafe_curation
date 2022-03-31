@@ -1,0 +1,146 @@
+.email-verify-modal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: #ffffff;
+  border: 3px solid black;
+  z-index: 110;
+}
+.email-verify-modal .modal__top {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  background-color: #3b3b3b;
+}
+.email-verify-modal .modal__top .modal__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+.email-verify-modal .modal__top .modal__close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+}
+.email-verify-modal .modal__top .modal__close-btn:hover {
+  color: black;
+}
+.email-verify-modal .modal__content .check-email-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  padding: 1.5rem 1rem 0;
+}
+.email-verify-modal .check-email-form div {
+  display: flex;
+  justify-content: space-between;
+}
+.email-verify-modal .check-email-form .send-req-btn {
+  padding: 0.25rem 0.5rem;
+  background-color: #ffffff;
+  border: 1.5px solid black;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.email-verify-modal .check-email-form .send-req-btn:hover {
+  background-color: #808080;
+}
+.email-verify-modal .check-email-form .form-desc {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid black;
+  font-size: 0.75rem;
+}
+.email-verify-modal .modal__content .check-verify-number-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  padding: 1rem 1rem 0.5rem;
+}
+.email-verify-modal .check-verify-number-form .form-control {
+  position: relative;
+  width: 100%;
+  padding-right: 5rem;
+}
+.email-verify-modal .check-verify-number-form .form-control input {
+  width: 100%;
+  padding: 0.25rem 0 0.25rem 0.5rem;
+  border-color: 1px solid #dadada;
+}
+.email-verify-modal .check-verify-number-form .form-control .timer {
+  position: absolute;
+  top: 50%;
+  right: 6rem;
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  color: red;
+  visibility: hidden;
+}
+.email-verify-modal .check-verify-number-form .check-verify-number-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0.25rem 0.875rem;
+  background-color: #ffffff;
+  border: 1.5px solid black;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.email-verify-modal .check-verify-number-form .check-verify-number-btn:hover {
+  background-color: #808080;
+}
+.email-verify-modal .check-verify-number-form .input-desc,
+.email-verify-modal .check-verify-number-form .verify-number-desc {
+  font-size: 0.75rem;
+}
+.email-verify-modal .modal__content .btn-list-wrapper {
+  padding: 1.5rem 1rem 0.5rem;
+}
+.email-verify-modal .btn-list-wrapper .btn-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.875rem;
+}
+.email-verify-modal .btn-list .btn-list__item:first-child {
+  margin-right: 1.5rem;
+}
+.email-verify-modal .btn-list__item button {
+  width: 100%;
+  padding: 0.25rem 0.75rem;
+  background-color: #2e9cdf;
+  border: 1.5px solid black;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+}
+.email-verify-modal .btn-list__item button:hover {
+  background-color: #186c9f;
+}
+.email-verify-modal .resend-desc,
+.email-verify-modal .edit-email-desc {
+  font-size: 0.875rem;
+}
+.email-verify-modal .resend-desc {
+  margin-bottom: 0.25rem;
+}
+
+.email-verify-modal.show-flex ~ .modal-overlay {
+  display: block;
+}

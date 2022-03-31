@@ -33,8 +33,15 @@ input:focus {
   min-width: 350px;
 }
 
-.active {
+.show-flex {
   display: flex !important;
+}
+.show-block {
+  display: block !important;
+}
+/* 타이머 활성화 */
+.visible {
+  visibility: visible !important;
 }
 
 @media only screen and (max-width: 769px) {

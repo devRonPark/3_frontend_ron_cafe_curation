@@ -1,0 +1,159 @@
+@import url('../components/header.css');
+@import url('../components/modal.css');
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+#register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0.5rem;
+  width: 80%;
+  max-width: 500px;
+  padding: 2rem 1rem;
+  margin-top: 3.5rem;
+  border: 1px solid #c6c6c6;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgb(68 68 68);
+}
+#register-form > .title {
+  margin: 0 auto;
+}
+
+#register-form > .registerBtn {
+  display: block;
+  width: 100%;
+  margin-top: 1.2rem;
+  padding: 13px 0 13px;
+  border-radius: 6px;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #db7632;
+  color: #ffffff;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+#register-form > .registerBtn:hover {
+  background-color: #d35400;
+}
+#register-form .form-control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+#register-form .form-control > label {
+  margin-bottom: 0.3rem;
+}
+#register-form .form-control > .image-wrap {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+#register-form .image-wrap > #preview-image {
+  position: absolute;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+#register-form .image-wrap [type='file'] {
+  display: none;
+}
+#register-form .image-wrap label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 65%;
+  right: 0.6rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  font-size: 1.125rem;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+#register-form .image-wrap label:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 1);
+}
+
+#register-form .form-control > .input-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+#register-form .form-control > .nickname-wrap,
+#register-form .form-control > .emailInput-wrap {
+  width: 100%;
+  padding-right: 6.125rem;
+}
+#register-form .nickname-wrap > .nickname-check,
+#register-form .input-wrap > .email-check {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 5rem;
+  height: 100%;
+  padding: 0.2rem 0.1rem;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+#register-form .input-wrap > input {
+  width: 100%;
+  padding: 0.3rem 0.4rem;
+  border: 1.5px solid #dadada;
+}
+#register-form .input-wrap > .icon-wrap {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-56%);
+  color: #888;
+  font-size: 0.7rem;
+}
+#register-form .input-wrap > .emailIcon-wrap {
+  right: calc(3% + 100px);
+}
+#register-form .input-wrap > .icon-wrap.pwd-reveal {
+  cursor: pointer;
+}
+#register-form .form-control > .verify-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0.4rem;
+}
+#register-form .verify-wrap > .verify-status {
+  margin: 0 1rem;
+  color: #888;
+  font-size: 0.7rem;
+}
+#register-form .verify-wrap > .email-verify-btn {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+#register-form .form-control .error-message {
+  margin-top: 0.25rem;
+  visibility: hidden;
+  color: #e74c3c;
+}
+#register-form .form-control.error .error-message {
+  visibility: visible;
+}
+#register-form .form-control.success input {
+  border-color: #2ecc71;
+}
+#register-form .form-control.error input {
+  border-color: #e74c3c;
+}
