@@ -1,13 +1,14 @@
-const express = require('express');
+import express from 'express';
+import favicon from 'serve-favicon';
+import path from 'path';
+import indexRouter from './src/routes/index.routes.js';
+
 const PORT = process.env.PORT || 3000;
 const app = express();
-const favicon = require('serve-favicon');
-const path = require('path');
-
-const indexRouter = require('./src/routes/index.routes');
+const __dirname = path.resolve();
 
 // TODO 내가 허용한 폴더만 접근 가능하도록 public/html 로 변경
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public/html'));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use('/', indexRouter);
 
