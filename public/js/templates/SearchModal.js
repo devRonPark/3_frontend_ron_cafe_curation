@@ -1,5 +1,8 @@
 import { createModal } from '../components/modal/Modal.js';
-import { createSearchInput, createSearchForm } from '../components/form/SearchForm.js';
+import {
+  createSearchInput,
+  createSearchForm,
+} from '../components/form/SearchForm.js';
 import createCloseBtn from '../components/button/CloseButton.js';
 import createBtnElem from '../components/button/Button.js';
 import createAreaElem from '../components/area/Area.js';
@@ -63,15 +66,23 @@ function createSearchFilterBtn() {
   //   <i class="filter-btn__icon fas fa-sliders-h"></i>
   //   <span class="screen-reader-text">검색 필터 열기 버튼</span>
   // </button>
-  const searchFilterBtnclassObj = {buttonElem: "search-filter__btn", iconElem: ['fas', 'fa-sliders-h'], textElem: "screen-reader-text"}
-  const searchFilterBtn = createBtnElem(searchFilterBtnclassObj, 'button', '검색 필터 열기 버튼');
+  const searchFilterBtnclassObj = {
+    buttonElem: 'search-filter__btn',
+    iconElem: ['fas', 'fa-sliders-h'],
+    textElem: 'screen-reader-text',
+  };
+  const searchFilterBtn = createBtnElem(
+    searchFilterBtnclassObj,
+    'button',
+    '검색 필터 열기 버튼',
+  );
   return searchFilterBtn;
 }
 
 function createSearchFilterBox() {
   const searchFilterArea = createAreaElem('search-filter');
   const searchFilterBtn = createSearchFilterBtn();
-  
+
   searchFilterArea.appendChild(searchFilterBtn);
   return searchFilterArea;
 }
@@ -121,7 +132,6 @@ function createSearchModalContent(recentKeywordData) {
 const searchModalCloseBtnElem = createCloseBtn(
   '모달 창 닫기 버튼',
   'arrow-left',
-  'mobile',
 );
 const searchInputOption = {
   className: 'search-form__input',

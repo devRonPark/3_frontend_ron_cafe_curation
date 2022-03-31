@@ -61,7 +61,6 @@ function createNavModalContent() {
 const navModalCloseBtnElem = createCloseBtn(
   '네비게이션 모달 창 닫기 버튼',
   'x-mark',
-  'mobile',
 );
 const navModalContentElem = createNavModalContent();
 const navModalElem = createModal(

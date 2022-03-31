@@ -42,6 +42,7 @@ const logoLinkElem = document.createElement('a');
 logoElem.classList.add('logo');
 /* <a href="/main" class="logo__link">JJINCAFE IN SEOUL</a> */
 logoLinkElem.classList.add('logo__link');
+logoLinkElem.href = '/';
 logoLinkElem.textContent = 'JJINCAFE IN SEOUL';
 /* --------------------------------- */
 
