@@ -45,6 +45,7 @@
 }
 .header__logo .logo {
   color: #d35400;
+  cursor: pointer;
 }
 
 @media (max-width: 414px) {
