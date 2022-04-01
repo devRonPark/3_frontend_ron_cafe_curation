@@ -184,3 +184,40 @@ export const checkRegisterFormInputs = (inputsObj, inputsStatusObj) => {
     setSuccessFor(passwordConfirmation);
   }
 };
+// 로그인 폼 유효성 검증
+export const checkLoginFormInputs = inputsObj => {
+  // DOM Element
+  const { email, password } = inputsObj;
+
+  const emailValue = email.value.trim();
+  const passwordValue = password.value.trim();
+  // 로그인 폼 인풋 중 하나라도 유효성 검사 통과 못할 시 false
+  let isLoginFormValidated = false;
+
+  if (emailValue === '') {
+    setErrorFor(email, '이메일 주소를 반드시 입력해주시기 바랍니다.');
+    isLoginFormValidated = false;
+  } else if (!isEmail(emailValue)) {
+    setErrorFor(email, '올바르지 않은 이메일 형식입니다.');
+    isLoginFormValidated = false;
+  } else {
+    setSuccessFor(email);
+    isLoginFormValidated = true;
+  }
+
+  if (passwordValue === '') {
+    setErrorFor(password, '비밀번호를 입력해주시기 바랍니다.');
+    isLoginFormValidated = false;
+  } else if (!isPassword(passwordValue)) {
+    setErrorFor(
+      password,
+      '비밀번호는 숫자, 문자, 특수문자 중 반드시 2개를 포함하여 8자 이상 16자 이하로 입력해주시기 바랍니다.',
+    );
+    isLoginFormValidated = false;
+  } else {
+    setSuccessFor(password);
+    isLoginFormValidated = true;
+  }
+
+  return isLoginFormValidated;
+};
