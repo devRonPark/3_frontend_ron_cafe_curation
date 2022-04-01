@@ -1,3 +1,6 @@
+@import url('../components/header.css');
+@import url('../components/modal.css');
+
 #content {
   display: flex;
   flex-direction: column;
@@ -55,7 +58,7 @@
 .input-wrap > .icon-wrap.pwd-reveal {
   cursor: pointer;
 }
-#login-form > .loginBtn {
+#login-form > .login-btn {
   display: block;
   width: 60%;
   margin: 0 auto;
@@ -68,8 +71,22 @@
   background-color: #db7632;
   transition: background-color 0.3s ease;
 }
-#login-form > .loginBtn:hover {
+#login-form > .login-btn:hover {
   background-color: #d35400;
+}
+#login-form .form-control .error-message {
+  margin-top: 0.25rem;
+  visibility: hidden;
+  color: #e74c3c;
+}
+#login-form .form-control.error .error-message {
+  visibility: visible;
+}
+#login-form .form-control.success input {
+  border-color: #2ecc71;
+}
+#login-form .form-control.error input {
+  border-color: #e74c3c;
 }
 
 .checkbox-wrap {
