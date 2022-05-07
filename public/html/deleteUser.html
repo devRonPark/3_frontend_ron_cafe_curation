@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 탈퇴 | JJINCAFE IN SEOUL</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/pages/common.page.css" />
+    <link rel="stylesheet" href="../css/pages/deleteUser.page.css" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../images/favicon.ico"
+    />
+  </head>
+  <body>
+    <!-- 메인 -->
+    <main id="content">
+      <article>
+        <form id="delete-user-form">
+          <h1 class="title">
+            <i class="fas fa-lock"></i>
+            회원 비밀번호 확인
+          </h1>
+          <div class="form-content">
+            <div class="form-desc-wrap">
+              <p>비밀번호를 한번 더 입력해주세요.</p>
+              <p>비밀번호를 입력하시면 회원탈퇴가 완료됩니다.</p>
+            </div>
+            <p class="account-wrap">
+              <span class="label">회원아이디 :</span>
+              <span class="account-info"></span>
+            </p>
+            <div class="input-wrap">
+              <input
+                id="password"
+                name="password"
+                required
+                type="password"
+                placeholder="영문, 숫자 포함 8자 이상"
+              />
+              <span class="icon-wrap pwd-reveal">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+            <button type="submit" class="delete-user-btn">회원 탈퇴</button>
+          </div>
+        </form>
+        <div class="btn-list">
+          <a href="/" class="move-to-main-btn">메인으로</a>
+        </div>
+      </article>
+    </main>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer type="module" src="../js/pages/common.page.js"></script>
+    <script defer type="module" src="../js/controllers/modal.js"></script>
+    <script defer type="module" src="../js/pages/deleteUser.page.js"></script>
+  </body>
+</html>

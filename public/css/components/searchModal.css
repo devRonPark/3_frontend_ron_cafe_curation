@@ -1,14 +1,14 @@
 /* search-modal */
 .search-modal {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #ffffff;
-    z-index: 100;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1000;
 }
 .search-modal.active {
   display: flex;
@@ -45,7 +45,8 @@
   font-size: 1.125rem;
 }
 .search-modal > .modal__top .modal__close-btn,
-.search-form label .search-form__submit-btn {
+.search-modal .search-filter__btn,
+.search-form .search-form__submit-btn {
   width: 2rem;
   height: 2rem;
   font-size: 1.5rem;
@@ -120,7 +121,7 @@
     font-size: 1rem;
   }
   .search-modal > .modal__top .modal__close-btn,
-  .search-filter .search-filter__btn, 
+  .search-filter .search-filter__btn,
   .search-form .search-form__submit-btn {
     width: 1.5rem;
     height: 1.5rem;

@@ -34,18 +34,19 @@ import {
 */
 
 export default function createUserLikeCafeCard(cafeInfo) {
+  const { cafe_id, cafe_name, jibun_address } = cafeInfo;
   const jibunAddrBox = document.createElement('div');
   jibunAddrBox.classList.add('cafe-jibun-address');
-  jibunAddrBox.textContent = cafeInfo.address;
+  jibunAddrBox.textContent = jibun_address;
   const displayLikeBox = createDisplayLikeBox();
-  const menuNameList = [{ name: '관심 해제' }];
+  const menuNameList = [{ name: '관심 해제', type: 'dislike' }];
   const clickHandlerList = {
     menuBtnHandler: handleCardMenuListOpen,
     btnListHandler: handleCardMenuClick,
   };
   const selectMenuBox = createSelectMenuBox(menuNameList, clickHandlerList);
   const cafeContentElemList = [jibunAddrBox, displayLikeBox, selectMenuBox];
-  const cafeItem = createCard(cafeInfo.name, cafeContentElemList);
+  const cafeItem = createCard(cafe_name, cafeContentElemList, cafe_id);
 
   return cafeItem;
 }

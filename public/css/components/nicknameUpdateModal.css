@@ -1,0 +1,85 @@
+.nickname-update-modal {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: #ffffff;
+  border: 3px solid black;
+  z-index: 110;
+}
+
+.nickname-update-modal .modal__top {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #3b3b3b;
+}
+.nickname-update-modal .modal__top .modal__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+.nickname-update-modal .modal__top .modal__close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+}
+.nickname-update-modal .modal__content {
+  padding: 1rem 0 1rem 1rem;
+}
+.nickname-update-modal .nickname-rule-desc {
+  font-size: 0.75rem;
+  color: var(--color-pastelblue);
+}
+.nickname-update-modal .nickname-input-wrapper {
+  margin-top: 1rem;
+  display: flex;
+  column-gap: 1rem;
+}
+.nickname-update-modal #nickname {
+  padding: 0.3rem 0.4rem;
+  border: 1.5px solid #dadada;
+}
+.nickname-update-modal .nickname-check {
+  width: 5rem;
+  padding: 0.2rem 0.1rem;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.nickname-update-modal .btn-list {
+  display: flex;
+  justify-content: center;
+  column-gap: 3rem;
+  margin-top: 1rem;
+}
+
+.nickname-update-modal .error-message {
+  display: block;
+  margin-top: 1rem;
+  color: var(--color-red);
+}
+.nickname-update-modal .cancel-btn,
+.nickname-update-modal .update-btn {
+  padding: 0.25rem 0.75rem;
+  background-color: #2e9cdf;
+  border: 1.5px solid black;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+}
+.nickname-update-modal.show-flex ~ .modal-overlay {
+  display: block;
+}

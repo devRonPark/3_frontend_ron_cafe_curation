@@ -1,7 +1,6 @@
 @import url('./navModal.css');
 @import url('./searchModal.css');
 @import url('./searchFilterModal.css');
-@import url('./emailVerifyModal.css');
 
 .modal-overlay {
   position: fixed;

@@ -1,0 +1,160 @@
+/* ----- Review Write Modal ----- */
+.review-write-modal {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  padding: 8px 16px 24px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #c6c6c6;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgb(68 68 68);
+  z-index: 1100;
+}
+.review-write-modal.show-flex ~ .modal-overlay {
+  display: block;
+}
+
+.review-write-modal .modal__top {
+  width: 100%;
+  display: flex;
+  padding: 1rem 0;
+}
+.review-write-modal .modal__top .desktop-close-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: auto;
+}
+.desktop-close-btn__icon:before {
+  content: '\f00d';
+}
+.review-write-modal .modal__content {
+  width: 100%;
+  height: 100%;
+}
+.review-write-modal .modal__content .review-write-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-write-form__heading {
+  margin-bottom: 1.25rem;
+  font-size: 1.75rem;
+}
+
+/* ----- star widget ----- */
+.review-write-form__star-widget {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  column-gap: 0.875rem;
+  width: 100%;
+  padding: 0 2.25rem 0 0.2rem;
+  position: relative;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+.review-write-form__star-widget input {
+  display: none;
+}
+
+.review-write-form__star-widget label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+
+/* 별 클릭 시 노란색 채우기 */
+.review-write-form__star-widget :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+
+.review-write-form__star-widget label:hover,
+.review-write-form__star-widget label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+/* 별 다섯 개 다 클릭 시 반짝반짝 빛나게 하기 */
+#rate-5:checked ~ label {
+  color: #fe7;
+  text-shadow: 0 5px 20px gold;
+}
+
+#rate-1:checked ~ .emoji-wrap:after {
+  content: '😠';
+}
+#rate-2:checked ~ .emoji-wrap:after {
+  content: '😚';
+}
+#rate-3:checked ~ .emoji-wrap:after {
+  content: '😄';
+}
+#rate-4:checked ~ .emoji-wrap:after {
+  content: '😎';
+}
+#rate-5:checked ~ .emoji-wrap:after {
+  content: '😍';
+}
+
+.emoji-wrap {
+  position: absolute;
+  top: 55%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.review-write-form__input {
+  width: 100%;
+  height: 30%;
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+  font-size: 1.125rem;
+}
+.review-write-form__submit-btn {
+  padding: 1rem 2rem;
+  background: orange;
+  margin-top: 1rem;
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+.review-write-form__submit-btn:hover {
+  background: #d35400;
+}
+/* 모바일 버전 모달로 바뀜. */
+@media (max-width: 769px) {
+  .review-write-modal {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    background: #ffffff;
+    padding: 8px 16px 24px;
+    z-index: 1100;
+  }
+  .review-write-modal .modal__top .mobile-close-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,71 @@
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#delete-user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0.5rem;
+  width: 80%;
+  max-width: 500px;
+  margin: 3.5rem auto 3rem auto;
+  border: 1px solid #c6c6c6;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgb(68 68 68);
+}
+#delete-user-form .title {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #c6c6c6;
+}
+#delete-user-form .form-content {
+  padding: 1rem;
+}
+#delete-user-form .form-desc-wrap * {
+  line-height: 1.5;
+}
+#delete-user-form .form-desc-wrap :first-child {
+  font-weight: bold;
+}
+#delete-user-form .form-content .account-wrap {
+  margin: 0.75rem 0;
+}
+#delete-user-form .form-content .account-wrap .label {
+  font-weight: bold;
+}
+#delete-user-form .form-content .input-wrap {
+  position: relative;
+}
+#delete-user-form .form-content #password {
+  width: 100%;
+  padding: 0.5rem;
+}
+#delete-user-form .form-content .icon-wrap {
+  position: absolute;
+  right: 1rem;
+  top: 20%;
+}
+.delete-user-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem 0;
+  background-color: #db7632;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-list {
+  text-align: center;
+}
+.btn-list .move-to-main-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #383636;
+  color: #fff;
+}

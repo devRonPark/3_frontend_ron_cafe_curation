@@ -1,5 +1,6 @@
 import { createModal } from '../components/modal/Modal.js';
 import createCloseBtn from '../components/button/CloseButton.js';
+import createMyProfileBox from '../templates/MyProfileBox.js';
 
 /* <div class="nav-modal">
   <div class="title screen-reader-text">
@@ -19,7 +20,7 @@ import createCloseBtn from '../components/button/CloseButton.js';
         <a href="/account/login">로그인</a>
       </li>
       <li class="nav-menu__item">
-        <a href="/main">메인</a>
+        <a href="/">메인</a>
       </li>
       <li class="nav-menu__item">
         <a href="/top-lists">평점 높은 카페 리스트</a>
@@ -38,9 +39,9 @@ function createNavModalContent() {
 
   const btnContentList = [
     { name: '로그인', link: '/account/login' },
-    { name: '메인', link: '/main' },
-    { name: '평점 높은 카페 리스트', link: '/top-list' },
-    { name: '문의하기', link: '/service#contact' },
+    { name: '메인', link: '/' },
+    { name: '전체 카페 리스트', link: '/cafes' },
+    { name: '평점 높은 카페 리스트', link: '/cafes/top-list' },
   ];
 
   btnContentList.forEach(btnContent => {
@@ -48,9 +49,8 @@ function createNavModalContent() {
     const btnLinkElem = document.createElement('a');
 
     btnItemElem.classList.add('nav-menu__item');
-    btnLinkElem.href = btnContent.link;
-
     btnLinkElem.textContent = btnContent.name;
+    btnLinkElem.href = btnContent.link;
 
     btnItemElem.appendChild(btnLinkElem);
     btnListElem.appendChild(btnItemElem);

@@ -1,12 +1,5 @@
-@import url('../components/header.css');
-@import url('../components/modal.css');
+@import url('../components/emailVerifyModal.css');
 
-#content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 50px;
-}
 #register-form {
   display: flex;
   flex-direction: column;

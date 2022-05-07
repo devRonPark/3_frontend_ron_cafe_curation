@@ -1,5 +1,4 @@
-@import url('../components/header.css');
-@import url('../components/modal.css');
+@import url('../components/reviewWriteModal.css');
 @import url('../components/userLikeCafeCardList.css');
 @import url('../components/cardDropdownMenu.css');
 @import url('../components/myReviewCardList.css');
@@ -44,7 +43,7 @@ main {
   color: #2e9cdf;
   cursor: pointer;
 }
-.tab [type="radio"] {
+.tab [type='radio'] {
   display: none;
 }
 
@@ -62,13 +61,13 @@ main {
 }
 
 /*input 클릭시, label 스타일*/
-.tab [type="radio"]:checked + label {
+.tab [type='radio']:checked + label {
   color: #2e9cdf;
   border: 1px solid #ddd;
   border-top: 2px solid #2e9cdf;
   border-bottom: 1px solid #ffffff;
 }
-.tab [type="radio"]:checked ~ .tab-content {
+.tab [type='radio']:checked ~ .tab-content {
   display: block;
 }
 

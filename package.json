@@ -21,6 +21,7 @@
   "homepage": "https://github.com/byungchanparkme/3_frontend_ron_cafe_curation#readme",
   "dependencies": {
     "axios": "^0.26.1",
+    "cookie-parser": "^1.4.6",
     "express": "^4.17.3",
     "nodemon": "^2.0.15",
     "serve-favicon": "^2.5.0"

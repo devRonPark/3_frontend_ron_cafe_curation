@@ -3,6 +3,7 @@ my-review-card {
   flex-direction: column;
   position: relative;
   width: 100%;
+  margin-top: 2rem;
   padding: 1.5rem 1rem;
   border: 1px solid black;
   transition: transform 0.3s;
@@ -75,6 +76,28 @@ my-review-card:hover {
   height: 100%;
   font-size: 1.5rem;
   cursor: pointer;
+}
+.select-menu-box .btn-list {
+  display: none;
+  width: 5.5rem;
+  position: absolute;
+  right: 0;
+  background-color: #ffffff;
+}
+.select-menu-box .btn-list__item {
+  border: 1px solid black;
+  cursor: pointer;
+}
+.select-menu-box .btn-list__item:last-child {
+  border-top: none;
+}
+.select-menu-box .btn-list__item:hover {
+  background-color: var(--color-gray);
+}
+.select-menu-box .btn-list__item button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
 }
 
 @media (max-width: 414px) {

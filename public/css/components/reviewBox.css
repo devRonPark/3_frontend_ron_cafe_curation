@@ -1,0 +1,67 @@
+.review-box {
+  width: 500px;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 15px;
+  cursor: pointer;
+}
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.profile {
+  display: flex;
+  align-items: center;
+}
+.user-name strong {
+  color: #3d3d3d;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+.user-average-ratings {
+  color: #f9d71c;
+}
+.box-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.user-comment p.comment-txt {
+  font-size: 0.9rem;
+  color: #4b4b4b;
+}
+.user-comment p.create_date {
+  font-size: 0.7rem;
+  color: #9b9b9b;
+  margin-top: 0.25rem;
+}
+.review-box:hover {
+  transform: translateY(-10px);
+  transition: all ease;
+}
+
+@media (max-width: 340px) {
+  .box-top {
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .user-average-ratings {
+    margin-top: 0.25rem;
+  }
+}
+@media (max-width: 790px) {
+  .testimonial__heading h1 {
+    font-size: 1.4rem;
+  }
+}

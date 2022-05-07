@@ -2,33 +2,48 @@
   display: none;
   flex-direction: column;
   row-gap: 1rem;
-  position: fixed;
+  position: absolute;
+  top: 5rem;
+  right: 4rem;
+  /* position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw; 
+  height: 100vh; */
+  width: 400px;
   padding: 1rem 1rem 2rem 1rem;
   border: 1px solid #c6c6c6;
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 0 5px 8px 0 rgb(68 68 68);
-  z-index: 130;
+  z-index: 1100;
 }
 .search-filter-modal.active {
   display: flex;
 }
 .search-filter-modal .modal__top {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 1rem;
+  position: relative;
+  border-bottom: 1px solid #c6c6c6;
+}
+.search-filter-modal .modal__top .modal__title {
+  margin-left: 1rem;
+  font-size: 1.125rem;
+}
+.search-filter-modal .modal__top .reset-btn {
+  position: absolute;
+  right: 0;
+  font-size: 1.125rem;
+  cursor: pointer;
 }
 
 .search-filter-modal .modal__top .modal__close-btn {
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
   font-size: 1.125rem;
+  cursor: pointer;
 }
 .search-filter-modal .modal__content {
   display: flex;
@@ -39,6 +54,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
+}
+.search-filter__option:not(:last-child) {
+  padding-bottom: 1.5rem;
+}
+.search-filter__option:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 0.5rem;
+  background: rgb(238, 238, 238);
 }
 .search-filter__option label {
   flex: 1;
@@ -64,6 +93,30 @@
   width: 12px;
   transition: transform 0.5s;
 }
+.select-box #city-option-list,
+.select-box #gu-option-list,
+.select-box #dong-option-list {
+  position: absolute;
+  top: 3.5rem;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #c6c6c6;
+  background: #ffffff;
+  z-index: 110;
+}
+.select-box #gu-option-list,
+.select-box #dong-option-list {
+  height: 10.125rem; /* 3개 옵션을 기본으로 보여줌. */
+  overflow-y: scroll;
+}
+.search-filter-modal .option-list .option {
+  padding: 15px 0 15px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #c6c6c6;
+}
+.search-filter-modal .option-list .option:hover {
+  background: #c6c6c6;
+}
 
 /* @media (max-width: 414px) {
   .search-filter-modal {
@@ -74,3 +127,10 @@
     z-index:10000;    
   }
 } */
+
+.hide {
+  display: none;
+}
+.rotate {
+  transform: rotate(180deg);
+}

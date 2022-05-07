@@ -1,5 +1,7 @@
 import { createModal } from '../components/modal/Modal.js';
 import createCloseBtn from '../components/button/CloseButton.js';
+import { createModalTitle } from '../components/modal/Modal.js';
+import { makeBtn } from '../lib/util.js';
 
 /*
 <div class="search-filter-modal">
@@ -94,7 +96,7 @@ function createSelectedFieldBox(idObj, defaultSelectedFieldtext) {
 
   selectedFieldText.textContent = defaultSelectedFieldtext;
 
-  arrowIcon.src = "../images/arrow.png";
+  arrowIcon.src = '../images/arrow.png';
 
   selectedFieldBox.appendChild(selectedFieldText);
   selectedFieldBox.appendChild(arrowIcon);
@@ -107,6 +109,7 @@ function createOptionListBox(id) {
   const optionListBox = document.createElement('ul');
 
   optionListBox.classList.add('option-list');
+  optionListBox.classList.add('hide');
   optionListBox.id = id;
 
   return optionListBox;
@@ -117,11 +120,23 @@ function createOptionListBox(id) {
 function getOptionBoxIdInfo(option) {
   switch (option) {
     case 'city':
-      return {fieldBox: 'city-selected-field', fieldText: 'city-selected-text', optionList: 'city-option-list'}
+      return {
+        fieldBox: 'city-selected-field',
+        fieldText: 'city-selected-text',
+        optionList: 'city-option-list',
+      };
     case 'gu':
-      return {fieldBox: 'gu-selected-field', fieldText: 'gu-selected-text', optionList: 'gu-option-list'};
+      return {
+        fieldBox: 'gu-selected-field',
+        fieldText: 'gu-selected-text',
+        optionList: 'gu-option-list',
+      };
     case 'dong':
-      return {fieldBox: 'dong-selected-field', fieldText: 'dong-selected-text', optionList: 'dong-option-list'}
+      return {
+        fieldBox: 'dong-selected-field',
+        fieldText: 'dong-selected-text',
+        optionList: 'dong-option-list',
+      };
     default:
       return;
   }
@@ -132,8 +147,41 @@ function getOptionBoxIdInfo(option) {
 function createSearchFilterOption(option) {
   // {fieldBox: '...', fieldText: '...', optionList: '...'}
   const idObj = getOptionBoxIdInfo(option);
-  const labelNameObj = {'city': '시', 'gu': '구', 'dong': '동'};
+  const labelNameObj = { city: '시', gu: '구', dong: '동' };
   const defaultSelectedFieldtext = labelNameObj[option] + ' 선택';
+  let optionList = [];
+
+  if (option === 'city') {
+    optionList[0] = '서울특별시';
+  } else if (option === 'gu') {
+    optionList = [
+      '강남구',
+      '강동구',
+      '강북구',
+      '강서구',
+      '관악구',
+      '광진구',
+      '구로구',
+      '금천구',
+      '노원구',
+      '도봉구',
+      '동대문구',
+      '동작구',
+      '마포구',
+      '서대문구',
+      '서초구',
+      '성동구',
+      '성북구',
+      '송파구',
+      '양천구',
+      '영등포구',
+      '용산구',
+      '은평구',
+      '종로구',
+      '중구',
+      '중랑구',
+    ];
+  }
 
   // <div class="search-filter__option"></div>
   const filterOptionWrapper = document.createElement('div');
@@ -142,43 +190,59 @@ function createSearchFilterOption(option) {
   // <div class="select-box"></div>
   const filterOptionBox = document.createElement('div');
   // <div class="selected-field"></div>
-  const selectedFieldBox = createSelectedFieldBox({box: idObj.fieldBox, text: idObj.fieldText}, defaultSelectedFieldtext);
+  const selectedFieldBox = createSelectedFieldBox(
+    { box: idObj.fieldBox, text: idObj.fieldText },
+    defaultSelectedFieldtext,
+  );
   // <ul class="option-list"></ul>
-  const optionListBox = createOptionListBox(idObj.optionList); 
+  const optionListBox = createOptionListBox(idObj.optionList);
+
+  // optionListBox에서 'city'의 경우 '서울 특별시' 옵션 추가, 'gu'의 경우 구 옵션들 추가
+  optionList.forEach(option => {
+    const li = document.createElement('li');
+    li.className = 'option';
+    li.innerText = option;
+    optionListBox.appendChild(li);
+  });
 
   filterOptionWrapper.classList.add('search-filter__option');
   filterOptionLabel.classList.add('filter-name');
   filterOptionBox.classList.add('select-box');
 
   filterOptionBox.id = option;
-  
+
   // 라벨 이름 추가
   filterOptionLabel.textContent = labelNameObj[option];
-
 
   filterOptionBox.appendChild(selectedFieldBox);
   filterOptionBox.appendChild(optionListBox);
   filterOptionWrapper.appendChild(filterOptionLabel);
   filterOptionWrapper.appendChild(filterOptionBox);
-  
+
   return filterOptionWrapper;
 }
 
-
-
+const modalTitle = createModalTitle('필터');
+const resetBtn = makeBtn('모두 초기화', ['reset-btn']);
 // 모달 창 닫기 버튼 생성
-const searchFilterModalCloseBtnElem = createCloseBtn('검색 필터 모달 창 닫기 버튼', 'x-mark');
+const searchFilterModalCloseBtnElem = createCloseBtn(
+  '검색 필터 모달 창 닫기 버튼',
+  'x-mark',
+);
 const cityOptionElem = createSearchFilterOption('city');
 const guOptionElem = createSearchFilterOption('gu');
 const dongOptionElem = createSearchFilterOption('dong');
-const searchFilterModalContentElem = [cityOptionElem, guOptionElem, dongOptionElem];
+const searchFilterModalContentElem = [
+  cityOptionElem,
+  guOptionElem,
+  dongOptionElem,
+];
 const searchFilterModalElem = createModal(
   'search-filter-modal',
   '검색 필터 창',
-  null,
+  [modalTitle, resetBtn],
   searchFilterModalContentElem,
-  searchFilterModalCloseBtnElem
+  searchFilterModalCloseBtnElem,
 );
 
 export default searchFilterModalElem;
-

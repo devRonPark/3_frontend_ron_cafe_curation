@@ -1,0 +1,55 @@
+#error {
+  min-height: 100vh;
+  padding: 3rem 3rem 0;
+}
+
+.header {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: #d35400;
+  text-align: center;
+}
+.error-desc {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.75rem;
+}
+.error-desc::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 10rem;
+  height: 2px;
+  background: black;
+}
+.error-desc p:first-child {
+  margin-bottom: 1.875rem;
+  font-size: 1.25rem;
+}
+.error-desc p:first-child em {
+  font-weight: bold;
+  color: var(--color-red);
+}
+.error-guide {
+  margin-bottom: 1.75rem;
+}
+.error-guide p {
+  font-size: 1.125rem;
+}
+.error-guide p:first-child,
+.error-guide ul {
+  margin-bottom: 1rem;
+}
+.error-guide ul li {
+  line-height: 1.5;
+}
+.error-inquiry p:first-child em {
+  font-weight: bold;
+  color: var(--color-red);
+}
+.error-inquiry span {
+  display: block;
+  margin-top: 1.5rem;
+}

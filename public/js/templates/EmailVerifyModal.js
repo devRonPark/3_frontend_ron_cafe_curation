@@ -1,4 +1,4 @@
-import { createModal } from '../components/modal/Modal.js';
+import { createModal, createModalTitle } from '../components/modal/Modal.js';
 import createCloseBtn from '../components/button/CloseButton.js';
 
 /* 
@@ -56,12 +56,6 @@ import createCloseBtn from '../components/button/CloseButton.js';
   </div>
 */
 
-function createModalTitle(titleName) {
-  const titleElem = document.createElement('div');
-  titleElem.classList.add('modal__title');
-  titleElem.textContent = titleName;
-  return titleElem;
-}
 function createCheckEmailForm() {
   const checkEmailForm = document.createElement('form');
   const wrapper = document.createElement('div');

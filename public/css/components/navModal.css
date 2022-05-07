@@ -1,3 +1,5 @@
+@import url('../components/myProfileBox.css');
+
 /* navigation modal */
 .nav-modal {
   position: fixed;
@@ -25,6 +27,7 @@
   color: #000;
   font-size: 1.4rem;
   transition: all 0.3s;
+  cursor: pointer;
 }
 .nav-modal .modal__content .nav-menu {
   display: flex;

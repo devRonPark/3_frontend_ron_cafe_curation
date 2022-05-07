@@ -327,10 +327,3 @@
 .recent-keyword__item:hover {
   background: #f2f2f2;
 }
-
-.hide {
-  visibility: hidden;
-}
-.rotate {
-  transform: rotate(180deg);
-}

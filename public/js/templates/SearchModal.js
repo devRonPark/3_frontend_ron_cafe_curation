@@ -102,14 +102,14 @@ function createSearchModalContent(recentKeywordData) {
   const isRecentKeywordExist = !!(recentKeywordData?.length > 0);
   // 최근 검색어가 존재하는 경우,
   if (isRecentKeywordExist) {
-    recentKeywordData.forEach(recentKeywordItem => {
+    recentKeywordData.forEach(recentKeyword => {
       const keywordItemElem = document.createElement('li');
       const keywordLinkElem = document.createElement('a');
 
       keywordItemElem.classList.add('recent-keyword__item');
-      keywordLinkElem.href = recentKeywordItem.link;
+      keywordLinkElem.href = `/search?name=${recentKeyword}`;
 
-      keywordLinkElem.textContent = recentKeywordItem.name;
+      keywordLinkElem.textContent = recentKeyword;
 
       keywordItemElem.appendChild(keywordLinkElem);
       recentKeywordListElem.appendChild(keywordItemElem);
@@ -142,7 +142,13 @@ const searchInputOption = {
 const searchInputElem = createSearchInput(searchInputOption);
 const searchFormElem = createSearchForm(searchInputElem);
 const searchFilterBoxElem = createSearchFilterBox();
-const searchModalContentElem = createSearchModalContent();
+
+// 최근 검색어 목록
+// 로컬 스토리지 상에 존재하는 경우 해당 리스트 가져오기
+const recentKeywordsList = localStorage.getItem('recentKeywords')
+  ? JSON.parse(localStorage.getItem('recentKeywords'))
+  : null;
+const searchModalContentElem = createSearchModalContent(recentKeywordsList);
 const searchModalElem = createModal(
   'search-modal',
   '검색 창',

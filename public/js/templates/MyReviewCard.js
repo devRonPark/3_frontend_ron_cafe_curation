@@ -5,7 +5,13 @@ import {
   handleCardMenuClick,
 } from '../controllers/cardDropdownMenu.js';
 
+// * 커스텀 엘리먼트를 사용하는 이유
+// 개발자들끼리 명확한 태그 분리
+// 어트리뷰트가 자주 바뀔 때 사용
+// 어트리뷰트는 사용자 인터랙션에 의해 백엔드를 거치지 않고 프론트 서버와 주고받을 때 사용
 class MyReviewCard extends HTMLElement {
+  // FIXME 데이터를 생성자에 받아오는 쪽이 좀 더 편하지 않을까?
+  // 고정되는 값은 여기서 받아도 됨.
   constructor() {
     super();
   }
@@ -63,18 +69,22 @@ class MyReviewCard extends HTMLElement {
     const userNameBox = document.createElement('div');
     const userName = document.createElement('strong');
 
-    const cafeName = document.createElement('p');
+    const cafeName = document.createElement('a');
     const commentTxt = document.createElement('p');
     const createdAt = document.createElement('p');
     const cafeIcon = createIcon(['fas', 'fa-coffee']);
     const cafeNameTxtNode = document.createTextNode(
       this.getAttribute('cafe-name'),
     );
-    const menuNameList = [{ name: '수정' }, { name: '삭제' }];
+    const menuNameList = [
+      { name: '수정', type: 'edit' },
+      { name: '삭제', type: 'delete' },
+    ];
     const clickHandlerList = {
       menuBtnHandler: handleCardMenuListOpen,
       btnListHandler: handleCardMenuClick,
     };
+    // 드롭다운 메뉴 버튼과 드롭다운 메뉴 박스
     const selectBox = createSelectMenuBox(menuNameList, clickHandlerList);
 
     cardTop.classList.add('card-top');
@@ -89,6 +99,9 @@ class MyReviewCard extends HTMLElement {
     commentTxt.classList.add('comment-txt');
     createdAt.classList.add('created-at');
 
+    // FIXME: getAttribute는 getter 형태로 만든다.
+    // function화
+    cafeName.href = `/cafes/${this.getAttribute('cafe-id')}`;
     profileImage.src = this.getAttribute('user-profile');
     userName.textContent = this.getAttribute('user-name');
     commentTxt.textContent = this.getAttribute('comment');
@@ -97,9 +110,15 @@ class MyReviewCard extends HTMLElement {
       TODO 전달받은 데이터에 따라서 평점을 어떻게 보여줄 것인지 CSS로 제어 필요
       Hint: gradient 이용 => 0.8인 경우 gradient: yellow(80%), white(20%)
     */
-    for (let i = 0; i < 5; i++) {
+    const ratings = this.getAttribute('star-rating');
+
+    for (let i = 1; i < 6; i++) {
+      // ratings 에 따라 채워지는 별의 종류가 달라짐.
       // <i class="fas fa-star"></i>
-      const starIcon = createIcon(['fas', 'fa-star']);
+      const starIcon =
+        i <= ratings
+          ? createIcon(['fas', 'fa-star'])
+          : createIcon(['far', 'fa-star']);
       userAverageRatings.appendChild(starIcon);
     }
 

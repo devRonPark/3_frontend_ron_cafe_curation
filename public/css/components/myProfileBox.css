@@ -1,0 +1,55 @@
+.my-profile-box {
+  margin-bottom: 1rem;
+}
+.my-profile-box .profile-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.my-profile-box .profile-wrapper strong:hover {
+  border-bottom: 1px solid black;
+}
+.my-profile-box .profile-wrapper .profile-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1.5rem;
+}
+.my-profile-box .profile-wrapper .arrow-icon {
+  display: block;
+  margin-left: auto;
+  position: relative;
+  top: -4px;
+  width: 12px;
+  transform: rotate(180deg);
+  transition: transform 0.5s;
+}
+
+.my-menu-list {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.125rem;
+}
+.my-menu-list li {
+  width: 100%;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+  text-align: center;
+}
+.my-menu-list li a {
+  display: block;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.my-profile-box .profile-wrapper.open .arrow-icon {
+  transform: rotate(360deg);
+}
+.my-profile-box .profile-wrapper.open + .my-menu-list {
+  display: flex;
+}

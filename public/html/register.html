@@ -12,7 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/pages/common.page.css" />
     <link rel="stylesheet" href="../css/pages/register.page.css" />
     <link
       rel="shortcut icon"
@@ -95,12 +95,12 @@
             <input
               id="password"
               name="password"
-              required="required"
+              required
               type="password"
               placeholder="영문, 숫자 포함 8자 이상"
             />
             <span class="icon-wrap pwd-reveal">
-              <i class="fas fa-eye"></i>
+              <i class="fas fa-eye-slash"></i>
             </span>
           </div>
           <small class="error-message">에러 메시지</small>
@@ -111,26 +111,22 @@
             <input
               id="password-confirmation"
               name="passwordConfirmation"
-              required="required"
+              required
               type="password"
               placeholder="비밀번호 확인"
             />
             <span class="icon-wrap pwd-reveal">
-              <i class="fas fa-eye"></i>
+              <i class="fas fa-eye-slash"></i>
             </span>
           </div>
           <small class="error-message">에러 메시지</small>
         </div>
-        <button type="button" class="registerBtn">가입하기</button>
+        <button type="submit" class="registerBtn">가입하기</button>
       </form>
     </main>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" defer src="../js/pages/common.page.js"></script>
     <script type="module" defer src="../js/controllers/modal.js"></script>
-    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script
-      type="module"
-      defer
-      src="../js/controllers/register.page.js"
-    ></script>
+    <script type="module" defer src="../js/pages/register.page.js"></script>
   </body>
 </html>

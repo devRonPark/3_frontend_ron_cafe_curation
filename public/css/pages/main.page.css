@@ -66,6 +66,7 @@ body {
   transform: translateY(-50%);
 }
 .main-search #main-search {
+  width: 100%;
   border: 0px;
 }
 /* input 박스 클릭 시 테두리 색상 없애기 */
@@ -79,7 +80,7 @@ body {
   background-position: center;
   background-size: cover;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url('../images/main_thumbnail.jpg');
+    url('../../images/main_thumbnail.jpg');
 }
 .main-header .btn-search {
   display: block;
@@ -100,7 +101,8 @@ body {
 }
 
 .popular_top_list_wrap {
-  margin-top: 60px;
+  margin: 60px 0;
+  position: relative;
 }
 .popular_top_list_wrap .title_wrap {
   display: flex;
@@ -118,24 +120,24 @@ body {
   text-decoration: underline;
   color: #cbcbcb;
 }
-.popular_top_list_wrap .toplist-slider {
+.popular_top_list_wrap .visual_wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
 }
-.popular_top_list_wrap .top_list_slide {
+.popular_top_list_wrap .slide_wrap {
   max-width: 350px;
   height: 300px;
-  overflow: scroll;
+  overflow: hidden;
 }
-.popular_top_list_wrap .main_popular_cafe_list {
+.popular_top_list_wrap .slide_list {
   display: flex;
   flex-direction: row;
   column-gap: 0.5rem;
   cursor: grab;
 }
-.main_popular_cafe_list .cafe-item {
+.slide_list .slide_conts {
   width: calc(100% - 30px);
   min-width: 350px;
   height: 300px;
@@ -144,7 +146,7 @@ body {
   overflow: hidden;
   box-shadow: 5px 5px 50px -1px var(--shadow);
 }
-.main_popular_cafe_list .cafe-item .info {
+.slide_conts .cafe-item .info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -154,7 +156,7 @@ body {
   transform: translateX(-50%);
   color: #ffffff;
 }
-.main_popular_cafe_list .cafe-item .thumb img {
+.slide_conts .cafe-item .thumb img {
   filter: brightness(50%);
   max-height: 100%;
 }
@@ -184,7 +186,7 @@ body {
   position: relative;
   display: block;
 }
-.popular_top_list_wrap .slide-dots {
+.slide_wrap .slide-dots {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -209,4 +211,52 @@ body {
 }
 .slide-dots > li.active > button::before {
   background: #ff7100;
+}
+.btn_wrap .prev,
+.btn_wrap .next {
+  font-size: 3rem;
+}
+.btn_wrap .prev {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.btn_wrap .pause,
+.btn_wrap .play {
+  position: absolute;
+  bottom: -11%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 2rem;
+}
+.btn_wrap .pause {
+  display: none;
+}
+.btn_wrap .next {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.dot_wrap {
+  margin-top: 1rem;
+}
+.dot_wrap ul {
+  display: flex;
+}
+.dot_wrap ul li {
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  border-radius: 100%;
+  border: 1px solid #000;
+  color: #fff;
+  text-indent: -9999px;
+}
+.dot_wrap ul li.on {
+  background-color: #000;
+}
+.dot_wrap ul li + li {
+  margin-left: 10px;
 }

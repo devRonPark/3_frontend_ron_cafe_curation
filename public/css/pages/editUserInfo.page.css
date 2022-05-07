@@ -1,9 +1,13 @@
+@import url('../components/profileUpdateModal.css');
+@import url('../components/nicknameUpdateModal.css');
+@import url('../components/passwordUpdateModal.css');
+
 .editUserInfo {
-  width: 90%;
-  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 90%;
+  max-width: 500px;
   padding: 2rem 1.4rem;
   border-radius: 6px;
   background-color: #fff;
@@ -43,6 +47,7 @@
   padding: 0.25rem 0.5rem;
   border-radius: 0.3rem;
   outline: 0;
+  cursor: pointer;
 }
 
 #preview-image {
@@ -52,11 +57,12 @@
 }
 
 .editUserInfo div:nth-child(2) .info-wrap {
-  width: 10.5rem;
   position: relative;
+  width: 10.5rem;
+  margin-top: 1rem;
 }
 
-.profile-change {
+.profile-update {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -66,10 +72,10 @@
   right: 0.5rem;
   cursor: pointer;
 }
-.profile-change i {
+.profile-update i {
   font-size: 1.125rem;
 }
-.profile-change:hover {
+.profile-update:hover {
   background: #bdbbbb;
 }
 

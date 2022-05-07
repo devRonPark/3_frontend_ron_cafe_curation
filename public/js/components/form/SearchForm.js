@@ -48,12 +48,9 @@ export function createSearchForm(searchInput) {
   const searchFormElem = document.createElement('form');
   const searchInputElem = searchInput;
   const searchInputLabelElem = document.createElement('label');
-  const searchBtnElem = createBtnElem(searchBtnClassObj, 'submit', '검색 버튼');
+  const searchBtnElem = createBtnElem(searchBtnClassObj, 'button', '검색 버튼');
 
   searchFormElem.classList.add('search-form');
-
-  searchFormElem.action = '/search';
-  searchFormElem.method = 'get';
 
   searchInputLabelElem.appendChild(searchInputElem);
   searchFormElem.appendChild(searchInputLabelElem);

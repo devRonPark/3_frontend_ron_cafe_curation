@@ -1,3 +1,13 @@
+/* 자주 사용하는 컬러 변수로 선언 */
+:root {
+  /* color */
+  --color-white: #ffffff;
+  --color-gray: #808080;
+  --color-pastelblue: #2e9cdf;
+  --color-red: #cc0000;
+  --color-green: #2db400;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -23,16 +33,22 @@ input:focus {
   overflow: hidden;
   clip-path: polygon(0 0, 0 0, 0 0);
 }
+
 #content {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  padding-top: 50px;
 }
 #content > article {
   width: 1200px;
   min-width: 350px;
 }
-
+.scroll-active {
+  background-color: rgba(34, 34, 34, 0.8);
+}
+/* 모달 창 활성화 */
 .show-flex {
   display: flex !important;
 }
@@ -42,6 +58,25 @@ input:focus {
 /* 타이머 활성화 */
 .visible {
   visibility: visible !important;
+}
+/* 버튼 활성화(disabled: false) */
+.btn-active {
+  background-color: var(--color-pastelblue) !important;
+  color: var(--color-white) !important;
+}
+/* 버튼 비활성화(disabled: true) */
+.btn-inactive {
+  background-color: var(--color-gray) !important;
+  color: var(--color-white) !important;
+}
+.input-wrong {
+  border-color: var(--color-red) !important;
+}
+.input-correct {
+  border-color: var(--color-pastelblue) !important;
+}
+.input-validated {
+  border-color: var(--color-green) !important;
 }
 
 @media only screen and (max-width: 769px) {

@@ -12,12 +12,13 @@ import createBtnElem from '../button/Button.js';
     </ul>
   </div>
 */
-function createMenuBtn(btnName) {
+function createMenuBtn(btnName, btnType) {
   /* button item component */
   const menuBtnWrapper = document.createElement('li');
   const menuBtn = document.createElement('button');
   menuBtn.type = 'button';
   menuBtn.textContent = btnName;
+  menuBtn.dataset.btnType = btnType;
   menuBtnWrapper.classList.add('btn-list__item');
   menuBtnWrapper.appendChild(menuBtn);
   return menuBtnWrapper;
@@ -35,6 +36,7 @@ export default function createSelectMenuBox(menuNameList, clickHandlerObj) {
   const selectMenuBtn = createBtnElem(btnClassObj, 'button', '메뉴 선택 버튼');
   const btnList = document.createElement('ul');
 
+  // menuBtnHandler 핸들러에서 로그인한 사용자와 리뷰 작성자 이름 일치 여부 확인 필요
   selectMenuBtn.addEventListener('click', menuBtnHandler);
   btnList.addEventListener('click', btnListHandler);
 
@@ -48,9 +50,8 @@ export default function createSelectMenuBox(menuNameList, clickHandlerObj) {
   selectMenuBoxWrapper.classList.add('select-menu-box');
   btnList.classList.add('btn-list');
   /* button item component */
-  menuNameList.forEach(({ name }) => {
-    console.log('name: ', name);
-    const menuBtn = createMenuBtn(name);
+  menuNameList.forEach(({ name, type }) => {
+    const menuBtn = createMenuBtn(name, type);
     btnList.appendChild(menuBtn);
   });
   selectMenuBoxWrapper.appendChild(selectMenuBtn);

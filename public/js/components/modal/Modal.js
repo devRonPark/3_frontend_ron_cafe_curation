@@ -1,11 +1,16 @@
-import createCloseBtn from '../button/CloseButton.js';
-
 // 모달 오버레이 생성
 export function createModalOverlay() {
   const modalOverlay = document.createElement('div');
   modalOverlay.classList.add('modal-overlay');
   return modalOverlay;
 }
+
+export const createModalTitle = titleName => {
+  const titleElem = document.createElement('div');
+  titleElem.classList.add('modal__title');
+  titleElem.textContent = titleName;
+  return titleElem;
+};
 
 // 모달 창 생성
 // modalContent는 각 모달 창 별로 다름.
@@ -51,7 +56,7 @@ export function createModal(
       modalTopContentElemList.forEach(modalTopContentElem =>
         modalTopElem.appendChild(modalTopContentElem),
       );
-    // modalTop에 추가될 요소가 한 개인 경우
+      // modalTop에 추가될 요소가 한 개인 경우
     } else if (typeof modalTopContentElemList === 'object') {
       modalTopElem.appendChild(modalTopContentElemList);
     }
@@ -63,7 +68,7 @@ export function createModal(
       modalContentElemList.forEach(modalContentElem =>
         modalContentWrapperElem.appendChild(modalContentElem),
       );
-    // modalContent에 추가될 요소가 한 개인 경우
+      // modalContent에 추가될 요소가 한 개인 경우
     } else if (typeof modalTopContentElemList === 'object') {
       modalContentWrapperElem.appendChild(modalContentElemList);
     }
