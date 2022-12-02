@@ -1,5 +1,5 @@
 // load gu, dong data of Seoul
-const dongData = require('../json/dongDataInSeoul.json');
+const dongData = require('/json/dongDataInSeoul.json');
 // {
 //   [gu]: [ dongList ],
 //   "종로구": [
