@@ -96,7 +96,7 @@ function createSelectedFieldBox(idObj, defaultSelectedFieldtext) {
 
   selectedFieldText.textContent = defaultSelectedFieldtext;
 
-  arrowIcon.src = '../images/arrow.png';
+  arrowIcon.src = '/images/arrow.png';
 
   selectedFieldBox.appendChild(selectedFieldText);
   selectedFieldBox.appendChild(arrowIcon);

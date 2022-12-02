@@ -38,7 +38,7 @@ export default function createMyProfileBox(nickname = null, imgPath = null) {
   nicknameBox.classList.add('nickname');
   nicknameBox.innerText = `${nickname} 님`;
   arrowIcon.classList.add('arrow-icon');
-  arrowIcon.src = '../images/arrow.png';
+  arrowIcon.src = '/images/arrow.png';
   myMenuList.classList.add('my-menu-list');
 
   profileWrapper.appendChild(profileImageBox);

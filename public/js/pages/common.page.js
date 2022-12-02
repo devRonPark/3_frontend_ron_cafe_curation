@@ -6,6 +6,7 @@ import navModalElem from '../templates/NavModal.js';
 import searchModalElem from '../templates/SearchModal.js';
 import searchFilterModalElem from '../templates/SearchFilterModal.js';
 import { checkUserLoggedInAPI } from '../controllers/apiController.js';
+import { backendBaseUrl } from '../lib/constants.js';
 
 const popupArea = document.querySelector('.popup');
 // navigation 모달 오버레이 요소 생성
@@ -73,7 +74,7 @@ const handleSelectOption = (evt, obj) => {
 // 서울시 내 동 데이터 불러오기
 const getData = async () => {
   try {
-    const dongData = await fetch('../json/dongDataInSeoul.json').then(data =>
+    const dongData = await fetch(`${backendBaseUrl}/json/dongDataInSeoul.json`).then(data =>
       data.json(),
     );
     return dongData;
