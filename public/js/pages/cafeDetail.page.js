@@ -17,13 +17,13 @@ import { backendBaseUrl } from '../lib/constants.js';
 import { debounce, toStringByFormatting } from '../lib/util.js';
 import { handleModalOpen } from '../controllers/modal.js';
 import '../templates/MyReviewCard.js';
-import { isNickname } from '../controllers/userValidate.js';
 
 // 카페 상세 정보 페이지에 리뷰 작성 모달 추가
 const popupArea = document.querySelector('.popup');
 popupArea.insertBefore(reviewWriteModalElem, popupArea.firstChild);
 
 // 카페 정보를 주입할 DOM 요소에 접근
+const cafeThumbnailImgElem = document.querySelector('.cafe-photo .thumb img');
 const cafeNameElem = document.querySelector('.cafe_title_wrap .cafe_name');
 const cafeRatePointElem = document.querySelector(
   '.cafe_title_wrap .rate-point',
@@ -45,6 +45,7 @@ const mobileJibunAddressElem = document.querySelector(
 );
 const desktopTelElem = document.querySelector('.cafe__detailInfoList .tel td');
 const mobileTelElem = document.querySelector('.cafe__infoItem .tel-text');
+const cafeMenuElem = document.querySelector('.cafe__detailInfoList .menu');
 const updatedAtElem = document.querySelector('.update_date');
 const menuDataElem = document.querySelector('.menu td');
 const operHoursDataElem = document.querySelector('.operating-hours td');
@@ -98,16 +99,6 @@ const userId = localStorage.getItem('me')
 
 (async () => {
   try {
-    // 카페 조회 수 조회
-    const resultOfGetViewCount = await getCafeViewCountAPI(cafeId);
-    const { views } = resultOfGetViewCount.data;
-    // 본 페이지 접근 시 카페 조회 수 + 1
-    const resultOfIncreaseViews = await increaseCafeViewCountAPI(cafeId, {
-      views,
-    });
-    const { viewCount } = resultOfIncreaseViews.data;
-    viewCountBoxOnTop.innerText = viewCount;
-
     // 병렬적으로 처리하고자 하는 것들
     // getCafeDetailInfoReq, getCafeUserLikeOrNotReq, getCafeLikeCountReq, getCafeReviewsReq, getCafeAverageRatingsReq
     const [
@@ -123,17 +114,24 @@ const userId = localStorage.getItem('me')
       getCafeReviewsAPI(cafeId),
       getCafeAverageRatingsAPI(cafeId),
     ]);
-
-    const { cafeData } = cafeDetailInfo.data;
+    const { cafeData, menuData } = cafeDetailInfo.data;
     const { likeCount } = cafeLikeCount.data;
     const { avgRatings } = cafeAvgRatings.data;
-    const cafeInfo = cafeData[0];
+    const cafeInfo = cafeData;
+
+    // 본 페이지 접근 시 카페 조회 수 + 1
+    const resultOfIncreaseViews = await increaseCafeViewCountAPI(cafeId, {
+      views: cafeInfo.views,
+    });
+    const { viewCount } = resultOfIncreaseViews.data;
+    viewCountBoxOnTop.innerText = viewCount;
 
     // 카페 정보, DOM 요소에 동적 삽입
     const innerTextAboutCafeInfo = (cafeInfo, messages = null) => {
-      const { name, road_address, jibun_address, tel, created_at } = cafeInfo;
+      const { name, image_path, road_address, jibun_address, tel, created_at } = cafeInfo;
       const updatedAt = new Date(created_at);
       // 가져온 카페 정보를 각 DOM 요소에 주입한다.
+      cafeThumbnailImgElem.src = image_path;
       cafeNameElem.innerText = name;
       desktopRoadAddressElem.innerText = road_address;
       desktopJibunAddressElem.innerText = jibun_address;
@@ -211,8 +209,7 @@ const userId = localStorage.getItem('me')
         created_at,
         updated_at,
       } = reviewData;
-      // 이 코드는 무슨 동작?
-      // ratingsCountObj[ratings]++;
+    
       const writeDate = updated_at
         ? toStringByFormatting(new Date(updated_at))
         : toStringByFormatting(new Date(created_at));
