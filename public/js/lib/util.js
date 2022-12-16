@@ -42,8 +42,7 @@ export const handleInputChange = (evt, name, regExp, inputCheckBtn) => {
 // CafeCard
 // item => {id, name, jibun_address}
 export const renderItem = item => {
-  let { id, name, jibun_address } = item;
-  jibun_address = jibun_address.replace('서울특별시 ', '');
+  let { id, name, image_path, road_address } = item;
   const li = document.createElement('li');
   li.dataset.id = id;
   li.classList.add('cafe-item');
@@ -54,14 +53,14 @@ export const renderItem = item => {
         <figure>
           <div class="thumb">
             <img
-              src="../images/cafe_thumbnail_mobile.jpg"
+              src=${image_path !== "" ? image_path : "../images/cafe_thumbnail_mobile.jpg"}
               alt="[카페 이름] 사진 - [도로명 주소]"
             />
           </div>
           <figcaption>
             <div class="info">
               <span class="title">${name}</span>
-              <span class="address">${jibun_address}</span>
+              <span class="address">${road_address}</span>
               <strong class="point">4.4</strong>
             </div>
           </figcaption>
