@@ -11,7 +11,6 @@ import {
   likeCafeAPI,
   dislikeCafeAPI,
   increaseCafeViewCountAPI,
-  getCafeViewCountAPI,
 } from '../controllers/apiController.js';
 import { backendBaseUrl } from '../lib/constants.js';
 import { debounce, toStringByFormatting } from '../lib/util.js';
@@ -45,7 +44,6 @@ const mobileJibunAddressElem = document.querySelector(
 );
 const desktopTelElem = document.querySelector('.cafe__detailInfoList .tel td');
 const mobileTelElem = document.querySelector('.cafe__infoItem .tel-text');
-const cafeMenuElem = document.querySelector('.cafe__detailInfoList .menu');
 const updatedAtElem = document.querySelector('.update_date');
 const menuDataElem = document.querySelector('.menu td');
 const operHoursDataElem = document.querySelector('.operating-hours td');
@@ -119,6 +117,18 @@ const userId = localStorage.getItem('me')
     const { avgRatings } = cafeAvgRatings.data;
     const cafeInfo = cafeData;
 
+    // 카페 메뉴 정보 동적 삽입
+    if (menuData?.length > 0) {
+      const ul = document.createElement('ul');
+      menuDataElem.innerText = '';
+      menuData.forEach(v => {
+        const li = document.createElement('li');
+        li.innerText = `${v.name} : ${v.price}`;
+        ul.appendChild(li);
+      });
+      menuDataElem.appendChild(ul);
+    }
+
     // 본 페이지 접근 시 카페 조회 수 + 1
     const resultOfIncreaseViews = await increaseCafeViewCountAPI(cafeId, {
       views: cafeInfo.views,
@@ -128,10 +138,12 @@ const userId = localStorage.getItem('me')
 
     // 카페 정보, DOM 요소에 동적 삽입
     const innerTextAboutCafeInfo = (cafeInfo, messages = null) => {
-      const { name, image_path, road_address, jibun_address, tel, created_at } = cafeInfo;
+      const { name, image_path, road_address, jibun_address, tel, created_at } =
+        cafeInfo;
       const updatedAt = new Date(created_at);
       // 가져온 카페 정보를 각 DOM 요소에 주입한다.
-      cafeThumbnailImgElem.src = image_path;
+      cafeThumbnailImgElem.src =
+        image_path !== '' ? image_path : '../images/cafe_thumbnail_mobile.jpg';
       cafeNameElem.innerText = name;
       desktopRoadAddressElem.innerText = road_address;
       desktopJibunAddressElem.innerText = jibun_address;
@@ -154,6 +166,7 @@ const userId = localStorage.getItem('me')
     // 카페 위치(위도, 경도), 카카오맵 위에 마커로 표시
     const showCafeLocationOnMap = cafeInfo => {
       const { latitude, longitude } = cafeInfo;
+      if (!latitude || !longitude) return;
 
       const mapOption = {
         center: new kakao.maps.LatLng(latitude, longitude),
@@ -209,7 +222,7 @@ const userId = localStorage.getItem('me')
         created_at,
         updated_at,
       } = reviewData;
-    
+
       const writeDate = updated_at
         ? toStringByFormatting(new Date(updated_at))
         : toStringByFormatting(new Date(created_at));
