@@ -96,252 +96,260 @@ const userId = localStorage.getItem('me')
   : null;
 
 (async () => {
-  try {
-    // 병렬적으로 처리하고자 하는 것들
-    // getCafeDetailInfoReq, getCafeUserLikeOrNotReq, getCafeLikeCountReq, getCafeReviewsReq, getCafeAverageRatingsReq
-    const [
-      cafeDetailInfo,
-      isCafeUserLike,
-      cafeLikeCount,
-      cafeReviews,
-      cafeAvgRatings,
-    ] = await Promise.all([
-      getCafeDetailInfoAPI(cafeId),
-      getCafeUserLikeOrNotAPI(cafeId, userId),
-      getCafeLikeCountAPI(cafeId),
-      getCafeReviewsAPI(cafeId),
-      getCafeAverageRatingsAPI(cafeId),
-    ]);
-    const { cafeData, menuData } = cafeDetailInfo.data;
-    const { likeCount } = cafeLikeCount.data;
-    const { avgRatings } = cafeAvgRatings.data;
-    const cafeInfo = cafeData;
-
-    // 카페 메뉴 정보 동적 삽입
-    if (menuData?.length > 0) {
-      const ul = document.createElement('ul');
-      menuDataElem.innerText = '';
-      menuData.forEach(v => {
-        const li = document.createElement('li');
-        li.innerText = `${v.name} : ${v.price}`;
-        ul.appendChild(li);
+  // 병렬적으로 처리하고자 하는 것들
+  // getCafeDetailInfoReq, getCafeUserLikeOrNotReq, getCafeLikeCountReq, getCafeReviewsReq, getCafeAverageRatingsReq
+  Promise.allSettled([
+    getCafeDetailInfoAPI(cafeId),
+    getCafeUserLikeOrNotAPI(cafeId, userId),
+    getCafeLikeCountAPI(cafeId),
+    getCafeReviewsAPI(cafeId),
+    getCafeAverageRatingsAPI(cafeId),
+  ])
+    .then(response => {
+      return response.map(elem => {
+        if (elem.status === 'fulfilled') return elem.value.data;
+        else if (elem.status === 'rejected') return null;
       });
-      menuDataElem.appendChild(ul);
+    })
+    .then(
+      async ([
+        cafeDetailInfo,
+        isCafeUserLike,
+        cafeLikeCount,
+        cafeReviews,
+        cafeAvgRatings,
+      ]) => {
+        const { cafeData } = cafeDetailInfo;
+        const { likeCount } = cafeLikeCount;
+        const { avgRatings } = cafeAvgRatings;
+        const cafeInfo = cafeData;
+
+        // 카페 메뉴 정보 동적 삽입
+        if (menuData?.length > 0) {
+          const ul = document.createElement('ul');
+          menuDataElem.innerText = '';
+          menuData.forEach(v => {
+            const li = document.createElement('li');
+            li.innerText = `${v.name} : ${v.price}`;
+            ul.appendChild(li);
+          });
+          menuDataElem.appendChild(ul);
+        }
+
+        innerTextAboutCafeInfo(cafeInfo, cafeDetailInfo.message);
+        showCafeLocationOnMap(cafeInfo);
+        checkIsUserCafeLike(isCafeUserLike.data.message);
+        innerTextAboutLikeCount(likeCount, cafeLikeCount.message);
+        innerTextAboutCafeReviews(cafeInfo, cafeReviews);
+        innerTextAboutAvgRatings(avgRatings, cafeAvgRatings.message);
+        // 본 페이지 접근 시 카페 조회 수 + 1
+        const resultOfIncreaseViews = await increaseCafeViewCountAPI(cafeId, {
+          views: cafeInfo.views,
+        });
+        const { viewCount } = resultOfIncreaseViews.data;
+        viewCountBoxOnTop.innerText = viewCount;
+      },
+    )
+    .catch(error => {
+      console.log(error);
+    });
+
+  // 카페 정보, DOM 요소에 동적 삽입
+  const innerTextAboutCafeInfo = (cafeInfo, messages = null) => {
+    const { name, image_path, road_address, jibun_address, tel, created_at } =
+      cafeInfo;
+    const updatedAt = new Date(created_at);
+    // 가져온 카페 정보를 각 DOM 요소에 주입한다.
+    cafeThumbnailImgElem.src =
+      image_path !== '' ? image_path : '../images/cafe_thumbnail_mobile.jpg';
+    cafeNameElem.innerText = name;
+    desktopRoadAddressElem.innerText = road_address;
+    desktopJibunAddressElem.innerText = jibun_address;
+    mobileRoadAddressElem.innerText = road_address;
+    mobileJibunAddressElem.innerText = jibun_address;
+    desktopTelElem.innerText = tel ? tel : '준비중';
+    mobileTelElem.innerText = tel ? tel : '준비중';
+    updatedAtElem.innerText = `업데이트: ${toStringByFormatting(updatedAt)}`;
+
+    // 메시지가 존재하는 경우
+    messages &&
+      messages.forEach(message => {
+        if (message === 'CAFE_MENU_INFO_NOT_EXIST') {
+          menuDataElem.innerText = '준비중';
+        } else if (message === 'CAFE_OPERATING_HOURS_INFO_NOT_EXIST') {
+          operHoursDataElem.innerText = '준비중';
+        }
+      });
+  };
+  // 카페 위치(위도, 경도), 카카오맵 위에 마커로 표시
+  const showCafeLocationOnMap = cafeInfo => {
+    const { latitude, longitude } = cafeInfo;
+    if (!latitude || !longitude) return;
+
+    const mapOption = {
+      center: new kakao.maps.LatLng(latitude, longitude),
+      // 지도의 중심 좌표(임의 설정)
+      level: 3,
+      // 지도의 확대 레벨(임의 설정)
+    };
+
+    //설정한 지도 생성
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+    // 마커가 표시될 위치입니다
+    const markerPosition = new kakao.maps.LatLng(latitude, longitude);
+    // 마커를 생성합니다
+    const marker = new kakao.maps.Marker({
+      position: markerPosition,
+    });
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
+    //카카오맵 클릭 이벤트 추가
+    kakao.maps.event.addListener(map, 'click', mouseEvent => {
+      //클릭한 위도, 경도 정보 불러오기
+      const latlng = mouseEvent.latLng;
+      //마커 위치를 클릭한 위치로 이동
+      marker.setPosition(latlng);
+      marker.setMap(map);
+    });
+  };
+  // 로그인한 사용자의 해당 카페 좋아요 여부 체크
+  const checkIsUserCafeLike = (message = null) => {
+    if (message === 'USER_LIKE_CAFE') {
+      wannagoBtn.classList.add('like-active');
+      likeIcon.classList.remove('far');
+      likeIcon.classList.add('fas');
+    }
+  };
+  // 카페 좋아요 수, DOM 요소에 동적 삽입
+  const innerTextAboutLikeCount = (likeCount, message = null) => {
+    if (message && message === 'CAFE_LIKE_COUNT_ZERO') {
+      likeCountBoxOnTop.innerText = '0';
+    } else {
+      likeCountBoxOnTop.innerText = likeCount;
+    }
+  };
+  // 사용자 리뷰 카드 생성
+  const makeUserReviewCard = (cafeInfo, reviewData) => {
+    const {
+      id,
+      name,
+      profile_image_path,
+      ratings,
+      comment,
+      created_at,
+      updated_at,
+    } = reviewData;
+
+    const writeDate = updated_at
+      ? toStringByFormatting(new Date(updated_at))
+      : toStringByFormatting(new Date(created_at));
+    const reviewBox = document.createElement('my-review-card');
+    reviewBox.setAttribute('review-id', id);
+    reviewBox.setAttribute('cafe-id', cafeId);
+    reviewBox.setAttribute('cafe-name', cafeInfo.name);
+    reviewBox.setAttribute('user-name', name);
+    reviewBox.setAttribute(
+      'user-profile',
+      `${backendBaseUrl}${profile_image_path.replace('/uploads', '')}`,
+    );
+    reviewBox.setAttribute('star-rating', ratings);
+    reviewBox.setAttribute('comment', comment);
+    reviewBox.setAttribute('created-at', writeDate);
+    return reviewBox;
+  };
+  // 각 점수 별 퍼센트 표시
+  const showEveryRatingsPercentage = () => {
+    const singleStarAverageBoxList = document.querySelectorAll(
+      '.reviews__single-star-average',
+    );
+    // 각 점수 별 사용자 수
+    const ratingsCountObj = {
+      5: 0,
+      4: 0,
+      3: 0,
+      2: 0,
+      1: 0,
+    };
+
+    // 각 점수 별 퍼센트 계산
+    for (const prop in ratingsCountObj) {
+      const ratings = prop;
+      const count = ratingsCountObj[ratings];
+      const percentage = count === 0 ? 0 : (count / reviewCount) * 100;
+      const progressBarElem = singleStarAverageBoxList[
+        ratings - 1
+      ].querySelector('.progress-bar__data');
+      const percentageElem = singleStarAverageBoxList[
+        ratings - 1
+      ].querySelector('.single-star-average__percentage');
+      progressBarElem.value = percentage;
+      percentageElem.innerText = `${percentage}%`;
+    }
+  };
+  // 카페 리뷰 정보, DOM 요소에 동적 삽입
+  const innerTextAboutCafeReviews = (cafeName, reviewData) => {
+    const { reviewCount, reviews } = reviewData;
+
+    if (!reviewData) {
+      reviewCountBox.innerText = '총 리뷰 수(0)';
+      reviewCountBoxOnTop.innerText = '0';
+    } else {
+      reviewCountBoxOnTop.innerText = reviewCount;
+      reviewCountBox.innerText = `총 리뷰 수(${reviewCount})`;
+
+      reviews.forEach(review => {
+        const userReviewCard = makeUserReviewCard(cafeName, review);
+        reviewBoxContainer.appendChild(userReviewCard);
+      });
     }
 
-    // 본 페이지 접근 시 카페 조회 수 + 1
-    const resultOfIncreaseViews = await increaseCafeViewCountAPI(cafeId, {
-      views: cafeInfo.views,
-    });
-    const { viewCount } = resultOfIncreaseViews.data;
-    viewCountBoxOnTop.innerText = viewCount;
+    showEveryRatingsPercentage();
+  };
+  // 평균 점수를 기준으로 별점 표시
+  const showAverageRatingsOnStars = avgRatings => {
+    const starMarkList = averageRatingsStarsBox.querySelectorAll(
+      '.stars__single .fa-star',
+    );
 
-    // 카페 정보, DOM 요소에 동적 삽입
-    const innerTextAboutCafeInfo = (cafeInfo, messages = null) => {
-      const { name, image_path, road_address, jibun_address, tel, created_at } =
-        cafeInfo;
-      const updatedAt = new Date(created_at);
-      // 가져온 카페 정보를 각 DOM 요소에 주입한다.
-      cafeThumbnailImgElem.src =
-        image_path !== '' ? image_path : '../images/cafe_thumbnail_mobile.jpg';
-      cafeNameElem.innerText = name;
-      desktopRoadAddressElem.innerText = road_address;
-      desktopJibunAddressElem.innerText = jibun_address;
-      mobileRoadAddressElem.innerText = road_address;
-      mobileJibunAddressElem.innerText = jibun_address;
-      desktopTelElem.innerText = tel ? tel : '준비중';
-      mobileTelElem.innerText = tel ? tel : '준비중';
-      updatedAtElem.innerText = `업데이트: ${toStringByFormatting(updatedAt)}`;
-
-      // 메시지가 존재하는 경우
-      messages &&
-        messages.forEach(message => {
-          if (message === 'CAFE_MENU_INFO_NOT_EXIST') {
-            menuDataElem.innerText = '준비중';
-          } else if (message === 'CAFE_OPERATING_HOURS_INFO_NOT_EXIST') {
-            operHoursDataElem.innerText = '준비중';
-          }
-        });
-    };
-    // 카페 위치(위도, 경도), 카카오맵 위에 마커로 표시
-    const showCafeLocationOnMap = cafeInfo => {
-      const { latitude, longitude } = cafeInfo;
-      if (!latitude || !longitude) return;
-
-      const mapOption = {
-        center: new kakao.maps.LatLng(latitude, longitude),
-        // 지도의 중심 좌표(임의 설정)
-        level: 3,
-        // 지도의 확대 레벨(임의 설정)
-      };
-
-      //설정한 지도 생성
-      const map = new kakao.maps.Map(mapContainer, mapOption);
-      // 마커가 표시될 위치입니다
-      const markerPosition = new kakao.maps.LatLng(latitude, longitude);
-      // 마커를 생성합니다
-      const marker = new kakao.maps.Marker({
-        position: markerPosition,
-      });
-      // 마커가 지도 위에 표시되도록 설정합니다
-      marker.setMap(map);
-
-      //카카오맵 클릭 이벤트 추가
-      kakao.maps.event.addListener(map, 'click', mouseEvent => {
-        //클릭한 위도, 경도 정보 불러오기
-        const latlng = mouseEvent.latLng;
-        //마커 위치를 클릭한 위치로 이동
-        marker.setPosition(latlng);
-        marker.setMap(map);
-      });
-    };
-    // 로그인한 사용자의 해당 카페 좋아요 여부 체크
-    const checkIsUserCafeLike = (message = null) => {
-      if (message === 'USER_LIKE_CAFE') {
-        wannagoBtn.classList.add('like-active');
-        likeIcon.classList.remove('far');
-        likeIcon.classList.add('fas');
+    for (let i = 0; i < starMarkList.length; i++) {
+      // ratings 에 따라 채워지는 별의 종류가 달라짐.
+      // <i class="fas fa-star"></i>
+      if (i + 1 <= avgRatings) {
+        starMarkList[i].classList.remove('far');
+        starMarkList[i].classList.add('fas');
       }
-    };
-    // 카페 좋아요 수, DOM 요소에 동적 삽입
-    const innerTextAboutLikeCount = (likeCount, message = null) => {
-      if (message && message === 'CAFE_LIKE_COUNT_ZERO') {
-        likeCountBoxOnTop.innerText = '0';
-      } else {
-        likeCountBoxOnTop.innerText = likeCount;
-      }
-    };
-    // 사용자 리뷰 카드 생성
-    const makeUserReviewCard = (cafeInfo, reviewData) => {
-      const {
-        id,
-        name,
-        profile_image_path,
-        ratings,
-        comment,
-        created_at,
-        updated_at,
-      } = reviewData;
+    }
 
-      const writeDate = updated_at
-        ? toStringByFormatting(new Date(updated_at))
-        : toStringByFormatting(new Date(created_at));
-      const reviewBox = document.createElement('my-review-card');
-      reviewBox.setAttribute('review-id', id);
-      reviewBox.setAttribute('cafe-id', cafeId);
-      reviewBox.setAttribute('cafe-name', cafeInfo.name);
-      reviewBox.setAttribute('user-name', name);
-      reviewBox.setAttribute(
-        'user-profile',
-        `${backendBaseUrl}${profile_image_path.replace('/uploads', '')}`,
-      );
-      reviewBox.setAttribute('star-rating', ratings);
-      reviewBox.setAttribute('comment', comment);
-      reviewBox.setAttribute('created-at', writeDate);
-      return reviewBox;
-    };
-    // 각 점수 별 퍼센트 표시
-    const showEveryRatingsPercentage = () => {
-      const singleStarAverageBoxList = document.querySelectorAll(
-        '.reviews__single-star-average',
-      );
-      // 각 점수 별 사용자 수
-      const ratingsCountObj = {
-        5: 0,
-        4: 0,
-        3: 0,
-        2: 0,
-        1: 0,
-      };
+    // 0.3
+    const decimalRatings = avgRatings - Math.floor(avgRatings);
+    if (decimalRatings !== 0) {
+      const targetIdx = Math.ceil(avgRatings);
+      // 소수점에 해당하는 스타일링 해줘야 함.
+      starMarkList[targetIdx].style.gradient = `yellow: ${
+        decimalRatings * 100
+      }% white: ${100 - decimalRatings * 100}`;
+    }
+  };
+  // 평점 데이터, DOM 요소에 동적 삽입
+  const innerTextAboutAvgRatings = (avgRatings, message = null) => {
+    // 사용자 평점 데이터가 존재하지 않는 경우
+    if (
+      (message && message === 'CAFE_RATINGS_NOT_EXIST') ||
+      avgRatings === null
+    ) {
+      avgRatings = '0.0';
+      // 사용자 평점 데이터가 존재하는 경우
+    } else {
+      avgRatings =
+        avgRatings.toString().length === 1 ? `${avgRatings}.0` : avgRatings;
 
-      // 각 점수 별 퍼센트 계산
-      for (const prop in ratingsCountObj) {
-        const ratings = prop;
-        const count = ratingsCountObj[ratings];
-        const percentage = count === 0 ? 0 : (count / reviewCount) * 100;
-        const progressBarElem = singleStarAverageBoxList[
-          ratings - 1
-        ].querySelector('.progress-bar__data');
-        const percentageElem = singleStarAverageBoxList[
-          ratings - 1
-        ].querySelector('.single-star-average__percentage');
-        progressBarElem.value = percentage;
-        percentageElem.innerText = `${percentage}%`;
-      }
-    };
-    // 카페 리뷰 정보, DOM 요소에 동적 삽입
-    const innerTextAboutCafeReviews = (cafeName, reviewData) => {
-      const { reviewCount, reviews, message } = reviewData;
-
-      if (message && message === 'CAFE_REVIEW_DATA_NOT_EXIST') {
-        reviewCountBox.innerText = '총 리뷰 수(0)';
-        reviewCountBoxOnTop.innerText = '0';
-      } else {
-        reviewCountBoxOnTop.innerText = reviewCount;
-        reviewCountBox.innerText = `총 리뷰 수(${reviewCount})`;
-
-        reviews.forEach(review => {
-          const userReviewCard = makeUserReviewCard(cafeName, review);
-          reviewBoxContainer.appendChild(userReviewCard);
-        });
-      }
-
-      showEveryRatingsPercentage();
-    };
-    // 평균 점수를 기준으로 별점 표시
-    const showAverageRatingsOnStars = avgRatings => {
-      const starMarkList = averageRatingsStarsBox.querySelectorAll(
-        '.stars__single .fa-star',
-      );
-
-      for (let i = 0; i < starMarkList.length; i++) {
-        // ratings 에 따라 채워지는 별의 종류가 달라짐.
-        // <i class="fas fa-star"></i>
-        if (i + 1 <= avgRatings) {
-          starMarkList[i].classList.remove('far');
-          starMarkList[i].classList.add('fas');
-        }
-      }
-
-      // 0.3
-      const decimalRatings = avgRatings - Math.floor(avgRatings);
-      if (decimalRatings !== 0) {
-        const targetIdx = Math.ceil(avgRatings);
-        // 소수점에 해당하는 스타일링 해줘야 함.
-        starMarkList[targetIdx].style.gradient = `yellow: ${
-          decimalRatings * 100
-        }% white: ${100 - decimalRatings * 100}`;
-      }
-    };
-    // 평점 데이터, DOM 요소에 동적 삽입
-    const innerTextAboutAvgRatings = (avgRatings, message = null) => {
-      // 사용자 평점 데이터가 존재하지 않는 경우
-      if (
-        (message && message === 'CAFE_RATINGS_NOT_EXIST') ||
-        avgRatings === null
-      ) {
-        avgRatings = '0.0';
-        // 사용자 평점 데이터가 존재하는 경우
-      } else {
-        avgRatings =
-          avgRatings.toString().length === 1 ? `${avgRatings}.0` : avgRatings;
-
-        // 평균 점수를 기준으로 별점 표시
-        showAverageRatingsOnStars(avgRatings);
-      }
-      cafeRatePointElem.innerText = avgRatings;
-      starAverageRatingScoreElem.innerText = `${avgRatings} / 5`;
-    };
-
-    innerTextAboutCafeInfo(cafeInfo, cafeDetailInfo.data.message);
-    showCafeLocationOnMap(cafeInfo);
-    checkIsUserCafeLike(isCafeUserLike.data.message);
-    innerTextAboutLikeCount(likeCount, cafeLikeCount.data.message);
-    innerTextAboutCafeReviews(cafeInfo, cafeReviews.data);
-    innerTextAboutAvgRatings(avgRatings, cafeAvgRatings.data.message);
-  } catch (err) {
-    console.error(err);
-  }
+      // 평균 점수를 기준으로 별점 표시
+      showAverageRatingsOnStars(avgRatings);
+    }
+    cafeRatePointElem.innerText = avgRatings;
+    starAverageRatingScoreElem.innerText = `${avgRatings} / 5`;
+  };
 })();
 
 // 리뷰 작성 폼에서 평점 체크
